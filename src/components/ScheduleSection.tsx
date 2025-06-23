@@ -6,9 +6,9 @@ function Timeline3DBar() {
 		const el = ref.current;
 		if (!el) return;
 		const handle = (e: MouseEvent) => {
-			const { innerWidth, innerHeight } = window;
-			const x = (e.clientX / innerWidth - 0.5) * 30;
-			el.style.transform = `skewX(${x}deg)`;
+      const { innerWidth } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 30;
+      el.style.transform = `skewX(${x}deg)`;
 		};
 		window.addEventListener('mousemove', handle);
 		return () => window.removeEventListener('mousemove', handle);

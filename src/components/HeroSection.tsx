@@ -81,6 +81,7 @@ function CosmicStarfield() {
     });
 
     function draw() {
+      if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
 
       for (const star of starsRef.current) {
@@ -133,6 +134,7 @@ function CosmicStarfield() {
     draw();
 
     function handleResize() {
+      if (!canvas) return;
       width = canvas.offsetWidth * dpr;
       height = canvas.offsetHeight * dpr;
       canvas.width = width;

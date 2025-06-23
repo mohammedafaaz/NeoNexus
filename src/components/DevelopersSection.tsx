@@ -1,4 +1,3 @@
-import React from "react";
 import { Mail, Linkedin, Instagram, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 

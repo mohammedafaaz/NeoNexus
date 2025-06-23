@@ -9,8 +9,10 @@ function CosmicParticles() {
   const particles = useRef<any[]>([]);
 
   useEffect(() => {
+    // Safe canvas/ctx logic
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -21,6 +23,7 @@ function CosmicParticles() {
 
     // Responsive resize
     function handleResize() {
+      if (!canvas) return;
       width = canvas.offsetWidth;
       height = canvas.offsetHeight;
       canvas.width = width;
@@ -30,6 +33,7 @@ function CosmicParticles() {
 
     // Mouse move
     function handleMouseMove(e: MouseEvent) {
+      if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
       mouse.current.x = e.clientX - rect.left;
       mouse.current.y = e.clientY - rect.top;
@@ -48,6 +52,7 @@ function CosmicParticles() {
     }));
 
     function draw() {
+      if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
 
       // Animate and draw particles
