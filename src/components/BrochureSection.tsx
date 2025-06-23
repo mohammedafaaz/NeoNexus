@@ -109,7 +109,8 @@ export default function BrochureSection() {
             <div>
               <h2 className="text-3xl font-bold mb-4">EVENT BROCHURE</h2>
               <p className="mb-6 text-[var(--foreground-muted)] max-w-md">
-                Download our comprehensive brochure for complete details about the hackathon, including rules, eligibility criteria, judging parameters, and more.
+                Download our comprehensive brochure for complete details about the hackathon, including rules, eligibility criteria, judging parameters, and more.<br/>
+                <br/>After clicking the Download Pdf button, the PDF will be downloaded to your device. Check your Downloads.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
