@@ -300,7 +300,7 @@ export default function HeroSection() {
         <div className="mb-4">
           {/* Remove logo from here */}
           <DecryptText
-            text="NEONEXUS 36.0"
+            text="NEONEXUS  36.0"
             className="neon-animated-text text-5xl md:text-8xl font-bold mb-2 mt-32 neon-text text-[var(--primary)]"
           />
           <p className="text-xl md:text-2xl mb-4 text-[var(--foreground-muted)]">
