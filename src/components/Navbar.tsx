@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const hamburgerRef = useRef<HTMLDivElement>(null);
+  const [pendingSection, setPendingSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,18 +39,27 @@ export default function Navbar() {
       navigate('/');
       return;
     }
-    // If not on home, navigate to home first, then scroll after navigation
     if (window.location.pathname !== '/') {
+      setPendingSection(sectionId);
       navigate('/', { replace: false });
+    } else {
       setTimeout(() => {
         const section = document.getElementById(sectionId);
         if (section) section.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
-    } else {
-      const section = document.getElementById(sectionId);
-      if (section) section.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
   };
+
+  // After navigation to home, scroll to the pending section
+  useEffect(() => {
+    if (pendingSection && location.pathname === '/') {
+      setTimeout(() => {
+        const section = document.getElementById(pendingSection);
+        if (section) section.scrollIntoView({ behavior: 'smooth' });
+        setPendingSection(null);
+      }, 200); // Delay to ensure DOM is ready
+    }
+  }, [location, pendingSection]);
 
   return (
     <>
