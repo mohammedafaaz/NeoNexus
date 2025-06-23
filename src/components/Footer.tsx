@@ -63,7 +63,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-[var(--primary)] mr-2" />
-                <a href="mailto:abdulbitm@ieee.org" className="hover:text-[var(--primary)]">abdulbitm@ieee.org</a>
+                <a href="mailto:abdulbitm@ieee.org" className="hover:text-[var(--primary)] mr-2">abdulbitm@ieee.org</a>,
+                <a href="mailto:neonexus36.0@gmail.com" className="hover:text-[var(--primary)] ml-2">neonexus36.0@gmail.com</a>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-[var(--primary)] mr-2" />
