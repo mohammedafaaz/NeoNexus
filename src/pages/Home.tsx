@@ -38,7 +38,7 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
               <div className="glass-panel p-6 text-center">
-                <h3 className="text-2xl font-bold mb-2 text-[var(--secondary)]">2 CATEGORIES</h3>
+                <h3 className="text-2xl font-bold mb-2 text-[var(--secondary)]">4 DOMAINS</h3>
                 <p>Software & Hardware tracks with specialized challenges</p>
               </div>
               <div className="glass-panel p-6 text-center">

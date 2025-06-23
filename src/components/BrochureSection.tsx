@@ -20,23 +20,27 @@ export default function BrochureSection() {
     }
   };
 
+  // If no uploaded PDF, fallback to public brochure
+  const fallbackPdfUrl = "/Brochure.pdf";
+  const actualPdfUrl = pdfUrl || fallbackPdfUrl;
+  const actualPdfName = pdfName || "Brochure.pdf";
+
   const handleDownload = () => {
-    if (!pdfUrl) {
+    if (!actualPdfUrl) {
       alert('Brochure will be available soon. Please check back later.');
       return;
     }
-
     // Create temporary anchor element
     const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = pdfName || 'neonexus-brochure.pdf';
+    link.href = actualPdfUrl;
+    link.download = actualPdfName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   const handleShare = async () => {
-    if (!pdfUrl) {
+    if (!actualPdfUrl) {
       alert('No brochure available to share.');
       return;
     }
@@ -44,30 +48,39 @@ export default function BrochureSection() {
     // Check if Web Share API is available
     if (navigator.share) {
       try {
-        // For actual deployment, you'd want to have a real URL to the PDF
-        // For this demo, we'll just share the title and description
         await navigator.share({
           title: 'NeoNexus Hackathon Brochure',
           text: 'Check out the NeoNexus Hackathon brochure!',
-          url: window.location.href,
+          url: window.location.origin + actualPdfUrl,
         });
       } catch (error) {
         console.error('Error sharing:', error);
       }
     } else {
       // Fallback for browsers that don't support the Web Share API
-      // Copy the URL to clipboard
-      navigator.clipboard.writeText(window.location.href);
+      navigator.clipboard.writeText(window.location.origin + actualPdfUrl);
       setShareMessage('Link copied to clipboard!');
       setTimeout(() => setShareMessage(null), 3000);
     }
   };
 
   return (
-    <section className="py-16 relative" onKeyDown={handleKeyDown} tabIndex={0}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="glass-panel p-8 max-w-4xl mx-auto bg-gradient-to-br from-[var(--primary)]/20 to-[var(--accent)]/10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+    <section className="py-12 sm:py-16 relative" onKeyDown={handleKeyDown} tabIndex={0}>
+      {/* 3D Decorative Element (top right) */}
+      <div className="absolute right-0 top-0 z-0 pointer-events-none">
+        <svg width="100" height="100" viewBox="0 0 100 100" className="opacity-30">
+          <defs>
+            <radialGradient id="brochuregrad1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#8351f7" />
+              <stop offset="100%" stopColor="transparent" />
+            </radialGradient>
+          </defs>
+          <circle cx="50" cy="50" r="50" fill="url(#brochuregrad1)" />
+        </svg>
+      </div>
+      <div className="container mx-auto px-2 sm:px-4 lg:px-8">
+        <div className="glass-panel p-4 sm:p-8 max-w-4xl mx-auto bg-gradient-to-br from-[var(--primary)]/20 to-[var(--accent)]/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
             <div>
               <h2 className="text-3xl font-bold mb-4">EVENT BROCHURE</h2>
               <p className="mb-6 text-[var(--foreground-muted)] max-w-md">
@@ -79,12 +92,12 @@ export default function BrochureSection() {
                   onClick={handleDownload}
                 >
                   <FileDown className="w-5 h-5 mr-2" />
-                  {pdfUrl ? 'Download PDF' : 'Brochure Coming Soon'}
+                  Download PDF
                 </button>
                 <button 
                   className="neon-button flex items-center"
                   onClick={handleShare}
-                  disabled={!pdfUrl}
+                  disabled={!actualPdfUrl}
                 >
                   <Share2 className="w-5 h-5 mr-2" />
                   Share Brochure
@@ -118,10 +131,10 @@ export default function BrochureSection() {
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] opacity-70 blur-md rounded-lg"></div>
               <div className="relative bg-[var(--background-dark)] p-6 rounded-lg">
-                {pdfUrl ? (
+                {actualPdfUrl ? (
                   <div className="w-[200px] sm:w-[250px] h-[300px] overflow-hidden border border-white/20 rounded">
                     <embed 
-                      src={pdfUrl} 
+                      src={actualPdfUrl} 
                       type="application/pdf"
                       width="100%"
                       height="100%"

@@ -2,8 +2,20 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--background-dark)] border-t border-white/10 pt-12 pb-6">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[var(--background-dark)] border-t border-white/10 pt-12 pb-6 relative overflow-hidden">
+      {/* 3D Decorative Element (bottom right) */}
+      <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
+        <svg width="120" height="120" viewBox="0 0 120 120" className="opacity-30">
+          <defs>
+            <radialGradient id="footgrad1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#8351f7" />
+              <stop offset="100%" stopColor="transparent" />
+            </radialGradient>
+          </defs>
+          <circle cx="60" cy="60" r="60" fill="url(#footgrad1)" />
+        </svg>
+      </div>
+      <div className="container mx-auto px-2 sm:px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* About */}
           <div>

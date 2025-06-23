@@ -1,25 +1,45 @@
-import { Brain, Code, Cpu, Layers3, Tablet, Wallet, ArrowRight, FileText, Users, Rocket } from 'lucide-react';
+import { Brain, Globe2, Cpu, Leaf, Shield, Lock, RefreshCw, CloudSun, Car, Users, Rocket, ArrowRight, FileText, Bot } from 'lucide-react';
 import { useState } from 'react';
 
 const tracks = [
 	{
-		title: 'Software',
-		description: 'Develop innovative software solutions across various domains',
-		icon: <Code className="w-8 h-8 text-[var(--secondary)]" />,
+		title: 'ADVANCED TECHNOLOGY',
+		description: '',
+		icon: <Cpu className="w-8 h-8 text-[var(--secondary)]" />,
 		areas: [
-			{ name: 'Artificial Intelligence', icon: <Brain className="w-5 h-5" /> },
-			{ name: 'Blockchain & Web3', icon: <Wallet className="w-5 h-5" /> },
-			{ name: 'XR (AR/VR) Applications', icon: <Layers3 className="w-5 h-5" /> },
+			{ name: 'AI & ML Innovations', icon: <Brain className="w-5 h-5" /> },
+			{ name: 'Smart cities & IoT', icon: <Globe2 className="w-5 h-5" /> },
+			{ name: 'Future Computing & Robotics', icon: <Bot className="w-5 h-5" /> },
 		],
 	},
 	{
-		title: 'Hardware',
-		description: 'Create physical computing solutions that interact with real world',
-		icon: <Cpu className="w-8 h-8 text-[var(--accent)]" />,
+		title: 'SUSTAINABLE ENVIRONMENT',
+		description: '',
+		icon: <Leaf className="w-8 h-8 text-[var(--accent)]" />,
 		areas: [
-			{ name: 'IoT & Smart Devices', icon: <Tablet className="w-5 h-5" /> },
-			{ name: 'Embedded Systems', icon: <Cpu className="w-5 h-5" /> },
-			{ name: 'Robotics & Automation', icon: <Brain className="w-5 h-5" /> },
+			{ name: 'Renewable Energy & Climate Solutions', icon: <CloudSun className="w-5 h-5" /> },
+			{ name: 'Circular Economy & Waste Managment', icon: <RefreshCw className="w-5 h-5" /> },
+			{ name: 'Green Tech for Smart Living', icon: <Globe2 className="w-5 h-5" /> },
+		],
+	},
+	{
+		title: 'CYBERSECURITY THREATS',
+		description: '',
+		icon: <Shield className="w-8 h-8 text-[var(--primary)]" />,
+		areas: [
+			{ name: 'AI-Driven Cyber Defense', icon: <Brain className="w-5 h-5" /> },
+			{ name: 'Blockchain & Digital Security', icon: <Lock className="w-5 h-5" /> },
+			{ name: 'Cybercrime & Threat Mitigation', icon: <Shield className="w-5 h-5" /> },
+		],
+	},
+	{
+		title: 'MOBILITY',
+		description: '',
+		icon: <Car className="w-8 h-8 text-[var(--secondary)]" />,
+		areas: [
+			{ name: 'Intelligent Driving Experience', icon: <Car className="w-5 h-5" /> },
+			{ name: 'Smart Coaching & Driver Engagement', icon: <Users className="w-5 h-5" /> },
+			{ name: 'AI-Powered Safety & Insurance Insights', icon: <Brain className="w-5 h-5" /> },
 		],
 	},
 ];
@@ -30,26 +50,46 @@ export default function TracksSection() {
 
 	return (
 		<>
-			<section id="tracks" className="py-16">
-				<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-					<h2 className="text-3xl font-bold mb-12 neon-text text-center">
-						COMPETITION TRACKS
+			<section id="tracks" className="py-12 sm:py-16 relative">
+        {/* 3D Decorative Element (top right) */}
+        <div className="absolute right-0 top-0 z-0 pointer-events-none">
+          <svg width="100" height="100" viewBox="0 0 100 100" className="opacity-30">
+            <defs>
+              <radialGradient id="trackgrad1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#8351f7" />
+                <stop offset="100%" stopColor="transparent" />
+              </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="50" fill="url(#trackgrad1)" />
+          </svg>
+        </div>
+        {/* 3D Decorative Element (bottom left) */}
+        <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
+          <svg width="120" height="120" viewBox="0 0 120 120" className="opacity-30">
+            <defs>
+              <radialGradient id="trackgrad2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#06b6d4" />
+                <stop offset="100%" stopColor="transparent" />
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="60" fill="url(#trackgrad2)" />
+          </svg>
+        </div>
+				<div className="container mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
+					<h2 className="text-3xl font-bold mb-8 neon-text text-center">
+						DOMAINS
 					</h2>
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
 						{tracks.map((track, index) => (
 							<div
 								key={index}
-								className="glass-panel p-8 transition-all duration-300 hover:bg-white/10 group"
+								className="glass-panel p-5 sm:p-8 transition-all duration-300 hover:bg-white/10 group"
 							>
-								<div className="flex items-center mb-6">
+								<div className="flex items-center mb-4 sm:mb-6">
 									{track.icon}
-									<h3 className="text-2xl font-bold ml-3">{track.title}</h3>
+									<h3 className="text-xl sm:text-2xl font-bold ml-3">{track.title}</h3>
 								</div>
-								<p className="mb-6 text-[var(--foreground-muted)]">
-									{track.description}
-								</p>
-								<div className="space-y-4">
-									<h4 className="font-semibold text-lg mb-3">Focus Areas:</h4>
+								<div className="space-y-3 sm:space-y-4">
 									{track.areas.map((area, idx) => (
 										<div key={idx} className="flex items-center">
 											<div className="p-2 rounded-full bg-[var(--primary)]/10 mr-3">

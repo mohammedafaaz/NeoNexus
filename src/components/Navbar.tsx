@@ -92,6 +92,13 @@ export default function Navbar() {
                   className="h-16 object-contain"
                 />
               </div>
+              <div className="bg-white p-2 rounded-xl shadow-md navbar-btn-glow">
+                <img
+                  src="/ieeeblr.jpg"
+                  alt="IEEE Bangalore Logo"
+                  className="h-16 object-contain"
+                />
+              </div>
             </div>
 
             {/* Center Title (absolutely centered) */}

@@ -79,14 +79,14 @@ export default function Register() {
                           <br/>
                           <strong>For Hackathon Participation:</strong><br/>
                           <ol className="list-decimal pl-5 space-y-2">
-                            <li><strong>The Teams Selected for NeoNexus Hackathon</strong>: ₹800 + GST per team (3-4 members per team)</li>
-                            <li><strong>IEEE Student Branch Members</strong>: ₹500 + GST per team (3-4 members per team)</li>
+                            <li><strong>The Teams Selected for NeoNexus Hackathon</strong>: ₹800 + 18% GST per team (3-4 members per team)</li>
+                            <li><strong>IEEE Members</strong>: ₹500 + 18% GST per team (3-4 members per team)</li>
                           </ol>
                           <br/>
                           <strong>For Poster Presentation:</strong><br/>
                           <ol className="list-decimal pl-5 space-y-2">
-                            <li><strong>The Teams Selected for NeoNexus Poster Presentation</strong>: ₹200 + GST per team (3-4 members per team)</li>
-                            <li><strong>IEEE Student Branch Members</strong>: ₹100 + GST per team (3-4 members per team)</li>
+                            <li><strong>The Teams Selected for NeoNexus Poster Presentation</strong>: ₹200 + 18% GST per team (3-4 members per team)</li>
+                            <li><strong>IEEE Members</strong>: ₹100 + 18% GST per team (3-4 members per team)</li>
                           </ol>
                         </li>
                       </ol>
