@@ -84,28 +84,28 @@ export default function Navbar() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-20 relative">
             {/* Left Logos */}
-            <div className="flex-shrink-0 flex items-center space-x-4">
-              <div className="bg-white p-2 rounded-xl shadow-md navbar-btn-glow">
+            <div className="flex-shrink-0 flex items-center space-x-2 sm:space-x-4">
+              <div className="bg-white p-1 rounded-xl shadow-md navbar-btn-glow">
                 <img
                   src="/bitm.png"
                   alt="Ballari Institute of Technology and Management Logo"
-                  className="h-16 object-contain"
+                  className="h-7 sm:h-12 object-contain"
                 />
               </div>
-              <div className="bg-white p-2 rounded-xl shadow-md navbar-btn-glow">
+              <div className="bg-white p-1 rounded-xl shadow-md navbar-btn-glow">
                 <img
                   src="/ieeeblr.jpg"
                   alt="IEEE Bangalore Logo"
-                  className="h-16 object-contain"
+                  className="h-7 sm:h-1.5rem object-contain"
                 />
               </div>
             </div>
 
-            {/* Center Title (absolutely centered) */}
-            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            {/* Center Title (absolutely centered, hidden on mobile) */}
+            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden sm:block">
               <Link
                 to="/"
-                className="text-xl md:text-2xl font-bold neon-text "
+                className="text-xl font-bold neon-text "
                 style={{ whiteSpace: 'nowrap' }}
               >
                 NEONEXUS 36.0
@@ -113,25 +113,26 @@ export default function Navbar() {
             </div>
 
             {/* Right Logos and Hamburger */}
-            <div className="flex items-center space-x-4 ml-auto">
-              <div className="bg-white p-2 rounded-xl shadow-md navbar-btn-glow hidden md:block">
+            <div className="flex items-center space-x-2 sm:space-x-4 ml-auto">
+              <div className="bg-white p-1 rounded-xl shadow-md navbar-btn-glow">
                 <img
                   src="/ieee-removebg.png"
                   alt="IEEE Logo"
-                  className="h-14 object-contain"
+                  className="h-7 sm:h-10 md:h-14 object-contain"
                 />
               </div>
-              <div className="bg-white p-2 rounded-xl shadow-md navbar-btn-glow hidden md:block">
+              <div className="bg-white p-1 rounded-xl shadow-md navbar-btn-glow">
                 <img
                   src="/sustaina-removebg.png"
                   alt="Sustaina Logo"
-                  className="h-14 object-contain"
+                  className="h-7 sm:h-10 md:h-14 object-contain"
                 />
               </div>
               {/* Hamburger Button (always visible) */}
               <button
-                className="text-white navbar-btn-glow"
+                className="text-white navbar-btn-glow p-2 sm:p-0"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Open navigation menu"
               >
                 {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
@@ -147,64 +148,64 @@ export default function Navbar() {
           className="fixed inset-0 z-50 bg-[#080812]/95 backdrop-blur-md flex flex-col pt-24 overflow-y-auto"
           style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}
         >
-          <div className="flex flex-col items-center space-y-6 pb-12">
+          <div className="flex flex-col items-center space-y-6 pb-12 px-4">
             <button
               onClick={() => handleNavClick('home')}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
-              Home
+              Back to Home
             </button>
             <button
               onClick={() => handleNavClick('about')}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               About
             </button>
             <button
               onClick={() => handleNavClick('tracks')}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               Tracks
             </button>
             <button
               onClick={() => handleNavClick('prizes')}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               Prizes
             </button>
             <button
               onClick={() => handleNavClick('schedule')}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               Schedule
             </button>
             <button
               onClick={() => handleNavClick('faq')}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               FAQ
             </button>
             <button
               onClick={() => handleNavClick('phases')}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               Phases
             </button>
             <button
               onClick={() => handleNavClick('sponsors')}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               Sponsors
             </button>
             <button
               onClick={() => { setIsMobileMenuOpen(false); navigate('/developers'); }}
-              className="text-white text-xl hover:text-[var(--primary)]"
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               Developers
             </button>
             <Link
               to="/register"
-              className="neon-button text-xl mt-4"
+              className="neon-button text-xl mt-4 w-full max-w-xs text-center py-3"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Register Now!

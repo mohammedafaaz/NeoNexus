@@ -1,5 +1,5 @@
 import { Brain, Globe2, Cpu, Leaf, Shield, Lock, RefreshCw, CloudSun, Car, Users, Rocket, ArrowRight, FileText, Bot } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const tracks = [
 	{
@@ -44,13 +44,45 @@ const tracks = [
 	},
 ];
 
+function HexGrid3D() {
+	const ref = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+		const handle = (e: MouseEvent) => {
+			const { innerWidth, innerHeight } = window;
+			const x = (e.clientX / innerWidth - 0.5) * 20;
+			const y = (e.clientY / innerHeight - 0.5) * 20;
+			el.style.transform = `translate3d(${x}px,${y}px,0)`;
+		};
+		window.addEventListener('mousemove', handle);
+		return () => window.removeEventListener('mousemove', handle);
+	}, []);
+	return (
+		<div ref={ref} className="absolute left-1/2 top-1/2 z-0 pointer-events-none" style={{transform: 'translate(-50%,-50%)'}}>
+			<svg width="320" height="120">
+				{Array.from({ length: 6 }).map((_, i) => (
+					<polygon
+						key={i}
+						points="30,15 45,25 45,45 30,55 15,45 15,25"
+						fill="#8351f7"
+						opacity="0.07"
+						transform={`translate(${30 + i*45},${30 + (i%2)*20})`}
+					/>
+				))}
+			</svg>
+		</div>
+	);
+}
+
 export default function TracksSection() {
 	// Only one phase can be expanded at a time
 	const [expandedPhase, setExpandedPhase] = useState<1 | 2 | 3 | null>(null);
 
 	return (
 		<>
-			<section id="tracks" className="py-12 sm:py-16 relative">
+			<section id="tracks" className="py-12 sm:py-16 relative overflow-hidden">
+				<HexGrid3D />
         {/* 3D Decorative Element (top right) */}
         <div className="absolute right-0 top-0 z-0 pointer-events-none">
           <svg width="100" height="100" viewBox="0 0 100 100" className="opacity-30">
@@ -295,9 +327,9 @@ export default function TracksSection() {
         <div className="mt-12 glass-panel p-6 flex flex-col items-center neon-text text-white">
                     <p className="font-semibold mb-2 text-lg">📌 Poster Presentation Opportunity</p>
 										<p>
-											<center>Not shortlisted for the NeoNexus Hackathon?</center> 
-											No problem!
-											Present your idea as a poster to the jury and audience.
+											<center>Not shortlisted for the NeoNexus Hackathon?</center>
+											<center>No problem!
+											Present your idea as a poster to the jury and audience, and win exciting goodies and certificates.</center>
 											
 										</p>
 									</div>

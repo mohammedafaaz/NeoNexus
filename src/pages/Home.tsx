@@ -11,6 +11,19 @@ import FaqSection from '../components/FaqSection';
 import SponsorsSection from '../components/SponsorsSection';
 import Footer from '../components/Footer';
 
+function About3DPolygon() {
+  // Simple floating polygon with mouse parallax
+  // Only rendered in About section
+  // No need for useEffect since it's static
+  return (
+    <div className="absolute left-1/2 top-0 z-0 pointer-events-none" style={{transform: 'translateX(-50%)', width: 180, height: 120}}>
+      <svg width="180" height="120">
+        <polygon points="90,10 170,60 130,110 50,110 10,60" fill="#8351f7" opacity="0.09" />
+      </svg>
+    </div>
+  );
+}
+
 export default function Home() {
   
   useEffect(() => {
@@ -24,7 +37,8 @@ export default function Home() {
         <HeroSection />
         
         {/* About Section */}
-        <section id="about" className="py-16">
+        <section id="about" className="py-16 relative overflow-hidden">
+          <About3DPolygon />
           <div className="glass-panel p-8 max-w-4xl mx-auto scanline">
             <h2 className="text-3xl font-bold mb-6 neon-text text-center">ABOUT NEONEXUS</h2>
             <p className="mb-6 text-lg text-[var(--foreground-muted-dark)]">

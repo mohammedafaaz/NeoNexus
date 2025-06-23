@@ -281,12 +281,12 @@ export default function HeroSection() {
           <img
             src="/neonexus.png"
             alt="NeoNexus Logo"
-            className="h-28 w-auto drop-shadow-[0_0_16px_rgba(139,92,246,0.8)]"
+            className="h-24 w-auto drop-shadow-[0_0_16px_rgba(139,92,246,0.8)]"
             draggable={false}
           />
         </div>
         <Orb
-          hoverIntensity={1.5}
+          hoverIntensity={1}
           rotateOnHover={true}  
           hue={300}
           forceHoverState={true}
@@ -299,7 +299,7 @@ export default function HeroSection() {
           {/* Remove logo from here */}
           <DecryptText
             text="NEONEXUS 36.0"
-            className="neon-animated-text text-6xl md:text-8xl font-bold mb-2 mt-32 neon-text text-[var(--primary)]"
+            className="neon-animated-text text-5xl md:text-8xl font-bold mb-2 mt-32 neon-text text-[var(--primary)]"
           />
           <p className="text-xl md:text-2xl mb-4 text-[var(--foreground-muted)]">
             Bridging reality and digital frontiers

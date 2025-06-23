@@ -41,8 +41,8 @@ function CosmicParticles() {
     particles.current = Array.from({ length: PARTICLE_COUNT }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.7,
-      vy: (Math.random() - 0.5) * 0.7,
+      vx: (Math.random() - 0.5) * 1.5, // Increased speed
+      vy: (Math.random() - 0.5) * 1.5, // Increased speed
       r: 1.5 + Math.random() * 2.5,
       color: `hsla(${260 + Math.random() * 60}, 100%, 70%, 0.8)`
     }));
@@ -128,6 +128,36 @@ function CosmicParticles() {
   );
 }
 
+// Add this component above export default
+function FloatingSpheres() {
+	const ref = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+		const handle = (e: MouseEvent) => {
+			const { innerWidth, innerHeight } = window;
+			const x = (e.clientX / innerWidth - 0.5) * 30;
+			const y = (e.clientY / innerHeight - 0.5) * 30;
+			el.style.transform = `translate3d(${x}px,${y}px,0)`;
+		};
+		window.addEventListener('mousemove', handle);
+		return () => window.removeEventListener('mousemove', handle);
+	}, []);
+	return (
+		<div ref={ref} className="pointer-events-none absolute left-1/2 top-1/3 z-0" style={{transform: 'translate(-50%,0)'}}>
+			<svg width="180" height="180">
+				<defs>
+					<radialGradient id="sphere1" cx="50%" cy="50%" r="50%">
+						<stop offset="0%" stopColor="#8351f7" />
+						<stop offset="100%" stopColor="transparent" />
+					</radialGradient>
+				</defs>
+				<circle cx="90" cy="90" r="80" fill="url(#sphere1)" opacity="0.22" />
+			</svg>
+		</div>
+	);
+}
+
 export default function ChiefGuestsSection() {
   // Chief Guest Data
   // TO REPLACE PHOTOS: Simply update the "image" URLs below with the paths to your real photos
@@ -198,6 +228,7 @@ export default function ChiefGuestsSection() {
 
   return (
     <section id="guests" className="py-12 sm:py-16 relative overflow-hidden">
+      <FloatingSpheres />
       {/* Cosmic interactive background */}
       <div className="absolute inset-0 z-0">
         <CosmicParticles />
@@ -243,7 +274,7 @@ export default function ChiefGuestsSection() {
         </div>
 
         {/* Eminent Jury Section */}
-        <h3 className="text-3xl font-bold mb-8 neon-text text-center">OUR EMINENT JURY</h3>
+        <h3 className="text-3xl font-bold mb-8 neon-text text-center">OUR EMINENT JURY'S</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {jury.map((guest, index) => (
             <div

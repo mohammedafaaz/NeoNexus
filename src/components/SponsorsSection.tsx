@@ -1,3 +1,29 @@
+import { useRef, useEffect } from 'react';
+
+function FloatingBadges() {
+	const ref = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+		const handle = (e: MouseEvent) => {
+			const { innerWidth, innerHeight } = window;
+			const x = (e.clientX / innerWidth - 0.5) * 20;
+			const y = (e.clientY / innerHeight - 0.5) * 20;
+			el.style.transform = `translate3d(${x}px,${y}px,0)`;
+		};
+		window.addEventListener('mousemove', handle);
+		return () => window.removeEventListener('mousemove', handle);
+	}, []);
+	return (
+		<div ref={ref} className="pointer-events-none absolute left-1/2 top-1/2 z-0" style={{transform: 'translate(-50%,-50%)'}}>
+			<svg width="220" height="80">
+				<ellipse cx="60" cy="40" rx="50" ry="18" fill="#8351f7" opacity="0.09" />
+				<ellipse cx="160" cy="40" rx="50" ry="18" fill="#06b6d4" opacity="0.09" />
+			</svg>
+		</div>
+	);
+}
+
 export default function SponsorsSection() {
   const organizers = [
     { name: "BITM", logo: "/bitm-removebg.png", url: "#" },
@@ -15,7 +41,8 @@ export default function SponsorsSection() {
   ];
 
   return (
-    <section id="sponsors" className="py-12 sm:py-16 relative">
+    <section id="sponsors" className="py-12 sm:py-16 relative overflow-hidden">
+      <FloatingBadges />
       {/* 3D Decorative Element (top left) */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
         <svg width="100" height="100" viewBox="0 0 100 100" className="opacity-30">
@@ -34,7 +61,7 @@ export default function SponsorsSection() {
         <div className="text-center mb-6">
           <p className="text-lg text-gray-300">Organized By</p>
           <h3 className="text-2xl font-bold text-white mt-1">
-            Ballari Institute of Technology and Management, IEEE Student Branch &<br/> BITM Sustaina
+            Ballari Institute of Technology and Management | IEEE Student Branch
           </h3>
         </div>
 
@@ -59,6 +86,9 @@ export default function SponsorsSection() {
         {/* In Association With */}
         <div className="text-center mb-6">
           <p className="text-lg text-gray-300">In Association With</p>
+          <h3 className="text-2xl font-bold text-white mt-1">
+            BITM Sustaina | IEEE Sight
+          </h3>
         </div>
         <div className="flex justify-center gap-12 mb-12">
           <a

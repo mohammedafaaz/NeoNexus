@@ -1,5 +1,33 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+
+function RotatingCube() {
+	const ref = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+		let mouseX = 0, mouseY = 0;
+		const handle = (e: MouseEvent) => {
+			const { innerWidth, innerHeight } = window;
+			mouseX = (e.clientX / innerWidth - 0.5) * 60;
+			mouseY = (e.clientY / innerHeight - 0.5) * 60;
+			el.style.transform = `perspective(600px) rotateX(${-mouseY}deg) rotateY(${mouseX}deg)`;
+		};
+		window.addEventListener('mousemove', handle);
+		return () => window.removeEventListener('mousemove', handle);
+	}, []);
+	return (
+		<div ref={ref} className="absolute right-10 top-10 z-0 pointer-events-none transition-transform duration-300" style={{width: 80, height: 80}}>
+			<svg width="80" height="80" viewBox="0 0 80 80">
+				<g>
+					<rect x="20" y="20" width="40" height="40" fill="#8351f7" opacity="0.13" />
+					<rect x="10" y="10" width="40" height="40" fill="#06b6d4" opacity="0.09" />
+					<rect x="30" y="30" width="40" height="40" fill="#ec4899" opacity="0.09" />
+				</g>
+			</svg>
+		</div>
+	);
+}
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -15,7 +43,7 @@ export default function FaqSection() {
     },
     {
       question: "Is there a registration fee?",
-      answer: "Yes, there is a nominal registration fee of ₹800 + 18% GST and ₹500 + 18% GST per team. This covers participation, meals, and accommodation for the duration of the event."
+      answer: "Yes, there is a nominal registration fee if shortlisted for NeoNexus Hackathon i.e. ₹800 + 18% GST and for IEEE Members ₹500 + 18% GST per team. For Poster Presentation a registration fee of ₹200 + 18% GST and ₹100 + 18% GST for IEEE Members is applicable. This covers participation, meals, and accommodation for the duration of the event."
     },
     {
       question: "What should I bring to the hackathon?",
@@ -40,7 +68,8 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-12 sm:py-16 relative">
+    <section id="faq" className="py-12 sm:py-16 relative overflow-hidden">
+			<RotatingCube />
       {/* 3D Decorative Element (top left) */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
         <svg width="100" height="100" viewBox="0 0 100 100" className="opacity-30">

@@ -1,7 +1,31 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { AlertTriangle, FileDown, Share2, Upload } from 'lucide-react';
 import { usePDF } from '../context/PDFContext';
 import PDFUploadModal from './PDFUploadModal';
+
+function AnimatedPDFIcon() {
+	const ref = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+		const handle = (e: MouseEvent) => {
+			const { innerWidth, innerHeight } = window;
+			const x = (e.clientX / innerWidth - 0.5) * 20;
+			const y = (e.clientY / innerHeight - 0.5) * 20;
+			el.style.transform = `rotateX(${-y}deg) rotateY(${x}deg)`;
+		};
+		window.addEventListener('mousemove', handle);
+		return () => window.removeEventListener('mousemove', handle);
+	}, []);
+	return (
+		<div ref={ref} className="absolute left-10 bottom-10 z-0 pointer-events-none transition-transform duration-300" style={{width: 60, height: 60}}>
+			<svg width="60" height="60" viewBox="0 0 60 60">
+				<rect x="8" y="8" width="44" height="44" rx="8" fill="#8351f7" opacity="0.13" />
+				<text x="30" y="38" textAnchor="middle" fontSize="18" fill="#fff" opacity="0.25" fontWeight="bold">PDF</text>
+			</svg>
+		</div>
+	);
+}
 
 export default function BrochureSection() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
@@ -65,7 +89,8 @@ export default function BrochureSection() {
   };
 
   return (
-    <section className="py-12 sm:py-16 relative" onKeyDown={handleKeyDown} tabIndex={0}>
+    <section className="py-12 sm:py-16 relative overflow-hidden" onKeyDown={handleKeyDown} tabIndex={0}>
+      <AnimatedPDFIcon />
       {/* 3D Decorative Element (top right) */}
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
         <svg width="100" height="100" viewBox="0 0 100 100" className="opacity-30">
@@ -128,25 +153,21 @@ export default function BrochureSection() {
               )}
             </div>
             
+            {/* Replace Preview with Brochure Poster */}
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] opacity-70 blur-md rounded-lg"></div>
-              <div className="relative bg-[var(--background-dark)] p-6 rounded-lg">
-                {actualPdfUrl ? (
-                  <div className="w-[200px] sm:w-[250px] h-[300px] overflow-hidden border border-white/20 rounded">
-                    <embed 
-                      src={actualPdfUrl} 
-                      type="application/pdf"
-                      width="100%"
-                      height="100%"
-                    />
-                  </div>
-                ) : (
-                  <img 
-                    src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=300&auto=format&fit=crop" 
-                    alt="Brochure Preview" 
-                    className="w-[200px] sm:w-[250px] h-auto shadow-lg rounded border border-white/20"
-                  />
-                )}
+              {/* Animated gradient background */}
+              <div className="absolute -inset-1 rounded-lg animate-gradientMove z-0" style={{
+                background: "linear-gradient(120deg, var(--primary), var(--accent), #06b6d4, var(--primary))",
+                backgroundSize: "300% 300%",
+                opacity: 0.7,
+                filter: "blur(16px)"
+              }}></div>
+              <div className="relative bg-[var(--background-dark)] p-2 sm:p-6 rounded-lg z-10">
+                <img 
+                  src="/brochureposter.png"
+                  alt="NeoNexus Brochure Poster"
+                  className="w-[200px] sm:w-[250px] h-auto shadow-lg rounded border border-white/20"
+                />
               </div>
             </div>
           </div>
@@ -161,3 +182,17 @@ export default function BrochureSection() {
     </section>
   );
 }
+
+/* Add this style globally (e.g., in index.css or via a <style> tag in this component) */
+<style>
+{`
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradientMove {
+  animation: gradientMove 0.1s ease-in-out infinite;
+}
+`}
+</style>
