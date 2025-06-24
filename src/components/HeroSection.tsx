@@ -1,6 +1,6 @@
 //ctx, canvas Errors are negligible
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import Orb from './Orb';
 
@@ -187,6 +187,7 @@ function MorphingText({ texts, currentIndex, className }: { texts: string[]; cur
 
 export default function HeroSection() {
   const [currentAnnouncement, setCurrentAnnouncement] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -420,9 +421,10 @@ export default function HeroSection() {
             <Countdown date={eventDate} renderer={renderer} />
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/regisSubmit"
+            <button
+              type="button"
               className="neon-button flex items-center justify-center gap-2 border-shine"
+              onClick={() => navigate('/Register')}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -435,10 +437,10 @@ export default function HeroSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
               </svg>
               Register Now
-            </Link>
+            </button>
             <button
               className="neon-button flex items-center justify-center gap-2 font-semibold border-shine"
-              onClick={() => window.open('/abstract-template.pdf', '_blank')}
+              onClick={() => window.open('/AbstractTemplate.pdf', '_blank')}
             >
               <span className="w-full text-center">Abstract Template</span>
               <svg

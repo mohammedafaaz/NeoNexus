@@ -50,10 +50,6 @@ export default function FaqSection() {
       answer: "Participants should bring their college ID, laptops, chargers, and any specialized hardware they wish to work with. Basic components for the hardware track will be provided."
     },
     {
-      question: "What if I don't have a team?",
-      answer: "Don't worry! We will have a team formation session before the event where solo participants can find teammates with complementary skills."
-    },
-    {
       question: "Will there be food and refreshments?",
       answer: "Absolutely! We will provide meals and refreshments throughout the 36 hours of the hackathon."
     },
