@@ -345,12 +345,13 @@ export default function TracksSection() {
 					</div>
 				</div>
         <div className="mt-12 glass-panel p-6 flex flex-col items-center neon-text text-white">
-                    <p className="font-semibold mb-2 text-lg">📌 Poster Presentation Opportunity</p>
+                    <p className="font-semibold mb-2 text-lg text-center">📌 Poster Presentation Opportunity</p>
 										<p>
 											<center>Not shortlisted for the NeoNexus Hackathon?</center>
 											<center>No problem!
 											Present your idea as a poster to the jury and audience, and win exciting goodies and certificates.</center>
-											
+											<center>More details will be shared during Phase-2</center><br/>
+											<center>Poster Presentation will be held on the same day as the Hackathon.</center>
 										</p>
 									</div>
 

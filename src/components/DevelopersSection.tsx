@@ -15,8 +15,8 @@ const developers = [
 		dept: "Dept. of AIML",
 		image: "/afaaz.jpg",
 		mail: "mailto:mohammedafaaz433@gmail.com",
-		linkedin: "https://www.linkedin.com/in/md-afaaz-19b11b316/",
-		instagram: "https://www.instagram.com/mohammedafaaz?igsh=MWJuaXRlemdlaHk2dg==",
+		linkedin: "#",
+		instagram: "#",
 	},
 	{
 		name: "Mohammed Shoaib",

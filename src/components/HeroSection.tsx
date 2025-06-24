@@ -275,7 +275,7 @@ export default function HeroSection() {
             <div
               className="announcement-marquee"
               style={{
-                display: 'inline-block',
+                display: 'flex',
                 whiteSpace: 'nowrap',
                 minWidth: '100%',
                 willChange: 'transform'
@@ -285,8 +285,20 @@ export default function HeroSection() {
                 href="https://forms.gle/QzqqC1dw3dwpdYxc7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="announcement-text"
+                className="announcement-text neon-text"
                 style={{ cursor: 'pointer', textDecoration: 'none' }}
+              >
+                Call for Abstract - Click here to Submit - Deadline 5th August 2025 
+              </a>
+              {/* Duplicate for seamless marquee */}
+              <a
+                href="https://forms.gle/QzqqC1dw3dwpdYxc7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="announcement-text neon-text"
+                style={{ cursor: 'pointer', textDecoration: 'none' }}
+                aria-hidden="true"
+                tabIndex={-1}
               >
                 Call for Abstract - Click here to Submit - Deadline 5th August 2025 
               </a>
@@ -306,7 +318,6 @@ export default function HeroSection() {
                   font-weight: 300;
                   font-size: 1.05rem;
                   margin: 0 1.2rem;
-                  /* Removed text-shadow and filter for no glow */
                   display: inline-block;
                   opacity: 0.96;
                   transition: opacity 2s;

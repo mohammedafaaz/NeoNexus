@@ -43,7 +43,7 @@ export default function FaqSection() {
     },
     {
       question: "Is there a registration fee?",
-      answer: "Yes, there is a nominal registration fee if shortlisted for NeoNexus Hackathon i.e. ₹800 + 18% GST and for IEEE Members ₹500 + 18% GST per team. For Poster Presentation a registration fee of ₹200 + 18% GST and ₹100 + 18% GST for IEEE Members is applicable. This covers participation, meals, and accommodation for the duration of the event."
+      answer: "Yes, there is a nominal registration fee if shortlisted for NeoNexus Hackathon i.e. ₹800 + 18% GST and for IEEE Members ₹500 + 18% GST per team, all team members must be IEEE members. For Poster Presentation a registration fee of ₹200 + 18% GST per team and for IEEE members ₹100 + 18% GST per team, all team members must be IEEE members. This covers participation, meals, and accommodation for the duration of the event."
     },
     {
       question: "What should I bring to the hackathon?",

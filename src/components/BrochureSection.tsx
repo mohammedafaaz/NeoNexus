@@ -45,9 +45,9 @@ export default function BrochureSection() {
   };
 
   // If no uploaded PDF, fallback to public brochure
-  const fallbackPdfUrl = "/Brochure.pdf";
+  const fallbackPdfUrl = "/NNBrochure.pdf";
   const actualPdfUrl = pdfUrl || fallbackPdfUrl;
-  const actualPdfName = pdfName || "Brochure.pdf";
+  const actualPdfName = pdfName || "NeoNexusBrochure.pdf";
 
   const handleDownload = () => {
     if (!actualPdfUrl) {
@@ -61,6 +61,9 @@ export default function BrochureSection() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+    // Open the PDF in a new tab after download
+    window.open(actualPdfUrl, '_blank');
   };
 
   const handleShare = async () => {
