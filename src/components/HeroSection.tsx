@@ -316,29 +316,211 @@ export default function HeroSection() {
             />
           </div>
 
+          {/* Announcement Box */}
+          <div className="announcement-box">
+            {/* ...existing announcement content... */}
+          </div>
+
+          {/* Scroll-based velocity banner */}
+          <div
+            className="w-full overflow-hidden py-2 cursor-pointer relative"
+            onClick={() => window.open('https://forms.gle/QzqqC1dw3dwpdYxc7', '_blank')}
+            style={{
+              marginBottom: '2rem',
+              maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)'
+            }}
+          >
+            <div
+              className="marquee font-bold text-lg select-none"
+              style={{
+                whiteSpace: 'nowrap',
+                display: 'inline-block',
+                minWidth: '100%',
+                willChange: 'transform'
+              }}
+            >
+              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit</span>
+              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit</span>
+              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit</span>
+              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit</span>
+            </div>
+            <style>
+              {`
+                .marquee {
+                  animation: marquee-smooth 14s linear infinite;
+                }
+                @keyframes marquee-smooth {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                .shiny-text {
+                  position: relative;
+                  background: linear-gradient(90deg, #8351f7 20%, #06b6d4 40%, #fff 60%, #8351f7 80%);
+                  background-size: 200% auto;
+                  color: transparent;
+                  background-clip: text;
+                  -webkit-background-clip: text;
+                  animation: shiny-move 2.5s linear infinite;
+                  -webkit-text-fill-color: transparent;
+                  filter: drop-shadow(0 0 6px #8351f7aa);
+                }
+                @keyframes shiny-move {
+                  0% { background-position: 200% 0; }
+                  100% { background-position: 0 0; }
+                }
+                .shimmer {
+                  position: relative;
+                  overflow: hidden;
+                  background: #fff;
+                  transition: box-shadow 0.3s;
+                  border: 2px solid transparent;
+                  z-index: 1;
+                }
+                .shimmer::before {
+                  content: '';
+                  position: absolute;
+                  inset: -2px;
+                  z-index: 2;
+                  border-radius: inherit;
+                  padding: 2px;
+                  background: linear-gradient(120deg, #8351f7, #06b6d4, #fff, #8351f7 90%);
+                  background-size: 400% 400%;
+                  animation: border-shine 5s linear infinite;
+                  pointer-events: none;
+                  mask:
+                    linear-gradient(#fff 0 0) content-box,
+                    linear-gradient(#fff 0 0);
+                  mask-composite: exclude;
+                  -webkit-mask:
+                    linear-gradient(#fff 0 0) content-box,
+                    linear-gradient(#fff 0 0);
+                  -webkit-mask-composite: xor;
+                }
+                @keyframes border-shine {
+                  0% { background-position: 0% 50%; }
+                  100% { background-position: 100% 50%; }
+                }
+                .shimmer .shiny-btn-text {
+                  color: #8351f7;
+                  background: none;
+                  background-clip: unset;
+                  -webkit-background-clip: unset;
+                  -webkit-text-fill-color: unset;
+                  filter: none;
+                  animation: none;
+                }
+              `}
+            </style>
+          </div>
           <h2 className="text-xl md:text-2xl mb-4 font-semibold">
             September 6-7, 2025
           </h2>
-
           <div className="mb-8">
             <Countdown date={eventDate} renderer={renderer} />
           </div>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/register" className="neon-button flex justify-center">
+            <Link
+              to="/regisSubmit"
+              className="neon-button flex items-center justify-center gap-2 border-shine"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 shimmer-icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="white"
+                strokeWidth={1}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
               Register Now
             </Link>
-            <button 
-              className="neon-button"
-              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+            <button
+              className="neon-button flex items-center justify-center gap-2 font-semibold border-shine"
+              onClick={() => window.open('/abstract-template.pdf', '_blank')}
             >
-              Learn More
+              <span className="w-full text-center">Abstract Template</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 shimmer-icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="white"
+                strokeWidth={1}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+              </svg>
             </button>
+            <style>
+              {`
+                .border-shine {
+                  position: relative;
+                  z-index: 1;
+                  overflow: hidden;
+                  border: none !important;
+                  /* Add slight shadow */
+                  box-shadow: 0 2px 12px 0 rgba(131,81,247,0.10), 0 1.5px 6px 0 rgba(6,182,212,0.08);
+                }
+                .border-shine::before {
+                  content: '';
+                  position: absolute;
+                  inset: 0;
+                  border-radius: inherit;
+                  padding: 2px;
+                  background: linear-gradient(120deg, #8351f7, #06b6d4, #fff, #8351f7 90%);
+                  background-size: 400% 400%;
+                  animation: border-shine 7s linear infinite;
+                  z-index: 2;
+                  pointer-events: none;
+                  mask:
+                    linear-gradient(#fff 0 0) content-box,
+                    linear-gradient(#fff 0 0);
+                  mask-composite: exclude;
+                  -webkit-mask:
+                    linear-gradient(#fff 0 0) content-box,
+                    linear-gradient(#fff 0 0);
+                  -webkit-mask-composite: xor;
+                }
+                @keyframes border-shine {
+                  0% { background-position: 0% 50%; }
+                  100% { background-position: 100% 50%; }
+                }
+                .neon-button {
+                  background: transparent;
+                  border: none;
+                  color: #8351f7;
+                  padding: 0.75rem 1.5rem;
+                  border-radius: 0.5rem;
+                  font-weight: 600;
+                  box-shadow: none;
+                  transition: background 0.2s, color 0.2s;
+                  position: relative;
+                  z-index: 1;
+                }
+                .neon-button:hover, .neon-button:focus {
+                  background: #8351f7;
+                  color: #fff;
+                }
+                .shimmer-icon {
+                  filter: drop-shadow(0 0 6px #fff) brightness(1.2);
+                  animation: shimmer-icon 2s linear infinite;
+                }
+                @keyframes shimmer-icon {
+                  0% { filter: drop-shadow(0 0 6px #fff) brightness(1.2); }
+                  50% { filter: drop-shadow(0 0 16px #fff) brightness(2); }
+                  100% { filter: drop-shadow(0 0 6px #fff) brightness(1.2); }
+                }
+              `}
+            </style>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
+/* Add shimmer effect styles (in your CSS or Tailwind config) */
+// .shimmer, .animate-marquee, and keyframes should be placed in your global CSS file if needed.
 
 

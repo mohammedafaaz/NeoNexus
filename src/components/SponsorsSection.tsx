@@ -32,11 +32,11 @@ export default function SponsorsSection() {
   ];
 
   const sponsors = [
+    { name: "IeeeBlr", logo: "/ieeeblr.jpg", url: "#" },
     { name: "MathWorks", logo: "/mathworks-removebg.png", url: "#" },
     { name: "CoreEl", logo: "/CoreEL-removebg.png", url: "#" },
     { name: "labteach", logo: "/labteach-removebg.png", url: "#" },
     { name: "amd", logo: "/amdlogo.png", url: "#" },
-    { name: "IeeeBlr", logo: "/ieeeblr.jpg", url: "#" },
     { name: "IMatiz", logo: "/imatiz.jpg", url: "#" }
   ];
 

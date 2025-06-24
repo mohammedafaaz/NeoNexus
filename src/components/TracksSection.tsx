@@ -1,4 +1,4 @@
-import { Brain, Globe2, Cpu, Leaf, Shield, Lock, RefreshCw, CloudSun, Car, Users, Rocket, ArrowRight, FileText, Bot } from 'lucide-react';
+import { Brain, Globe2, Cpu, Leaf, Shield, Lock, RefreshCw, CloudSun, Car, Users, Rocket, ArrowRight, FileText, Bot, Download } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 const tracks = [
@@ -42,6 +42,13 @@ const tracks = [
 			{ name: 'AI-Powered Safety & Insurance Insights', icon: <Brain className="w-5 h-5" /> },
 		],
 	},
+];
+
+const problemStatementPDFs = [
+	'/AdvancedTechnology.pdf',
+	'/Sustainability.pdf',
+	'/CyberSecurity&IoT.pdf',
+	'/Mobility.pdf',
 ];
 
 function HexGrid3D() {
@@ -132,6 +139,19 @@ export default function TracksSection() {
 									))}
 								</div>
 								<br />
+								<div className="flex justify-end">
+	<a
+		href={problemStatementPDFs[index]}
+		download
+		className="inline-flex items-center shiny-border px-3 py-1.5 mt-2 text-sm sm:text-base font-semibold problem-btn"
+		style={{ background: 'none' }}
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		Problem Statements
+		<Download className="ml-2 w-4 h-4 neon-text" />
+	</a>
+</div>
 							</div>
 						))}
 					</div>
@@ -335,6 +355,34 @@ export default function TracksSection() {
 									</div>
 
 			</section>
+			<style>
+{`
+.shiny-border {
+  position: relative;
+  z-index: 1;
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(90deg, #06b6d4, #8351f7, #06b6d4, #8351f7) border-box;
+  box-shadow: 0 0 6px 1px #8351f733, 0 0 12px 2px #06b6d433;
+  animation: shiny-move 2.5s linear infinite;
+  transition: box-shadow 0.2s, color 0.2s, background 0.2s;
+}
+.shiny-border:hover,
+.problem-btn:hover {
+  color: #fff;
+  background: linear-gradient(90deg, #06b6d4cc 0%, #8351f7cc 100%);
+  box-shadow: 0 0 12px 2px #8351f7aa, 0 0 24px 4px #06b6d4aa;
+  text-shadow: 0 0 6px #8351f7, 0 0 12px #06b6d4;
+}
+@keyframes shiny-move {
+  0% { background-position: 0% 50%, 0% 50%; }
+  100% { background-position: 100% 50%, 100% 50%; }
+}
+`}
+</style>
 		</>
 	);
 }
+
