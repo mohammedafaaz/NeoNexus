@@ -341,10 +341,8 @@ export default function HeroSection() {
                 willChange: 'transform'
               }}
             >
-              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit</span>
-              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit</span>
-              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit</span>
-              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit</span>
+              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit - Last date to submit 5th August 2025</span>
+              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit - Last date to submit 5th August 2025</span>
             </div>
             <style>
               {`
