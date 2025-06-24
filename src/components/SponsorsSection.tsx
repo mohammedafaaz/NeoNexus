@@ -98,8 +98,8 @@ export default function SponsorsSection() {
             rel="noopener noreferrer"
           >
             <img
-              src="/sight-removebg.png"
-              alt="IEEE Sight"
+              src="/sustaina-removebg.png"
+              alt="IEEE Sustaina"
               className="h-20 object-contain"
             />
           </a>
@@ -110,8 +110,8 @@ export default function SponsorsSection() {
             rel="noopener noreferrer"
           >
             <img
-              src="/sustaina-removebg.png"
-              alt="IEEE Sustaina"
+              src="/sight-removebg.png"
+              alt="IEEE Sight"
               className="h-20 object-contain"
             />
           </a>

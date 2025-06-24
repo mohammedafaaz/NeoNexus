@@ -190,7 +190,7 @@ export default function TracksSection() {
 											<li>🎯 Choose a Domain</li>
 											<li>🧠 Select a Problem Statement from the List</li>
 										</ul>
-										<p className="mb-2">📄 Submit an Abstract (Max 250 words) describing:</p>
+										<p className="mb-2">📄 Submit an Abstract (2/3 Pages) describing:</p>
 										<ul className="list-disc pl-5 mb-4">
 											<li>🔍 Problem Overview</li>
 											<li>💡 Your Proposed Solution</li>

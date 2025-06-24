@@ -37,7 +37,8 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4 text-[var(--primary)]">QUICK LINKS</h3>
             <ul className="space-y-2 text-[var(--foreground-muted)]">
               <li><a href="#" className="hover:text-[var(--primary)]">About</a></li>
-              <li><a href="#tracks" className="hover:text-[var(--primary)]">Tracks</a></li>
+              <li><a href="#tracks" className="hover:text-[var(--primary)]">Domains</a></li>
+              <li><a href="#tracks" className="hover:text-[var(--primary)]">Event Phases</a></li>
               <li><a href="#prizes" className="hover:text-[var(--primary)]">Prizes</a></li>
               <li><a href="#schedule" className="hover:text-[var(--primary)]">Schedule</a></li>
               <li><a href="#faq" className="hover:text-[var(--primary)]">FAQ</a></li>

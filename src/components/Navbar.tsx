@@ -176,7 +176,13 @@ export default function Navbar() {
               onClick={() => handleNavClick('tracks')}
               className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
-              Tracks
+              Domains
+            </button>
+            <button
+              onClick={() => handleNavClick('phases')}
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
+            >
+              Event Phases
             </button>
             <button
               onClick={() => handleNavClick('prizes')}
@@ -191,18 +197,6 @@ export default function Navbar() {
               Schedule
             </button>
             <button
-              onClick={() => handleNavClick('faq')}
-              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
-            >
-              FAQ
-            </button>
-            <button
-              onClick={() => handleNavClick('phases')}
-              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
-            >
-              Phases
-            </button>
-            <button
               onClick={() => handleNavClick('sponsors')}
               className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
@@ -214,8 +208,14 @@ export default function Navbar() {
             >
               Developers
             </button>
+            <button
+              onClick={() => handleNavClick('faq')}
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
+            >
+              FAQ
+            </button>
             <Link
-              to="/register"
+              to="/Register"
               className="neon-button text-xl mt-4 w-full max-w-xs text-center py-3"
               onClick={() => setIsMobileMenuOpen(false)}
             >

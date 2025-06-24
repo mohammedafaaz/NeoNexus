@@ -1,18 +1,10 @@
 //ctx, canvas Errors are negligible
 import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import Orb from './Orb';
 
 const eventDate = new Date('2025-09-06T09:00:00');
-
-const announcements = [
-  "Deadline for submission of Abstracts: August 5, 2025",
-  "₹50,000+ prize pool for winners",
-  "36-hour hackathon on September 6-7, 2025",
-  "Team size: 3-4 members per team",
-  "Software & Hardware tracks available"
-];
 
 // DecryptText component for decrypted text effect
 function DecryptText({ text, className }: { text: string; className?: string }) {
@@ -157,44 +149,8 @@ function CosmicStarfield() {
   );
 }
 
-// MorphingText component for smooth morphing between announcements
-function MorphingText({ texts, currentIndex, className }: { texts: string[]; currentIndex: number; className?: string }) {
-  const [displayed, setDisplayed] = useState(texts[0]);
-  const [fade, setFade] = useState(false);
-
-  useEffect(() => {
-    setFade(true);
-    const fadeOut = setTimeout(() => {
-      setDisplayed(texts[currentIndex]);
-      setFade(false);
-    }, 350); // fade out duration
-    return () => clearTimeout(fadeOut);
-  }, [currentIndex, texts]);
-
-  return (
-    <span
-      className={`${className || ''} transition-all duration-350 ease-in-out inline-block`}
-      style={{
-        opacity: fade ? 0 : 1,
-        transform: fade ? 'translateY(16px) scale(0.98)' : 'translateY(0) scale(1)',
-        transition: 'opacity 350ms, transform 350ms'
-      }}
-    >
-      {displayed}
-    </span>
-  );
-}
-
 export default function HeroSection() {
-  const [currentAnnouncement, setCurrentAnnouncement] = useState(0);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentAnnouncement((prev) => (prev + 1) % announcements.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
 
   const renderer = ({
     days,
@@ -302,116 +258,96 @@ export default function HeroSection() {
           {/* Remove logo from here */}
           <DecryptText
             text="NEONEXUS  36.0"
-            className="neon-animated-text text-5xl md:text-8xl font-bold mb-2 mt-32 neon-text text-[var(--primary)]"
+            className="neon-animated-text text-5xl md:text-8xl font-bold mb-2 mt-32 mr-1 neon-text text-[var(--primary)]"
           />
           <p className="text-xl md:text-2xl mb-4 text-[var(--foreground-muted)]">
             Bridging reality and digital frontiers
           </p>
 
-          {/* Rotating announcement with morphing effect */}
-          <div className="bg-[var(--primary)]/10 border border-[var(--primary)]/30 py-2 px-4 rounded-md max-w-xl mx-auto mb-6 h-10 flex items-center justify-center overflow-hidden relative">
-            <MorphingText
-              texts={announcements}
-              currentIndex={currentAnnouncement}
-              className="text-[var(--primary)] font-medium"
-            />
-          </div>
-
-          {/* Announcement Box */}
-          <div className="announcement-box">
-            {/* ...existing announcement content... */}
-          </div>
-
-          {/* Scroll-based velocity banner */}
+          {/* Announcement Box with white glowing marquee and clickable text */}
           <div
-            className="w-full overflow-hidden py-2 cursor-pointer relative"
-            onClick={() => window.open('https://forms.gle/QzqqC1dw3dwpdYxc7', '_blank')}
+            className="announcement-box bg-[var(--primary)]/10 border border-[var(--primary)]/30 py-1.5 px-2 rounded-md max-w-md sm:max-w-xl mx-auto mb-6 flex items-center justify-center overflow-hidden relative"
             style={{
-              marginBottom: '2rem',
-              maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)'
+              maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
             }}
           >
             <div
-              className="marquee font-bold text-lg select-none"
+              className="announcement-marquee"
               style={{
-                whiteSpace: 'nowrap',
                 display: 'inline-block',
+                whiteSpace: 'nowrap',
                 minWidth: '100%',
                 willChange: 'transform'
               }}
             >
-              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit - Last date to submit 5th August 2025</span>
-              <span className="mx-8 shiny-text">Call for Abstract - Click here to Submit - Last date to submit 5th August 2025</span>
+              <a
+                href="https://forms.gle/QzqqC1dw3dwpdYxc7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="announcement-text"
+                style={{ cursor: 'pointer', textDecoration: 'none' }}
+              >
+                Call for Abstract - Click here to Submit - Deadline 5th August 2025 
+              </a>
             </div>
             <style>
               {`
-                .marquee {
-                  animation: marquee-smooth 14s linear infinite;
+                .announcement-marquee {
+                  animation: announcement-marquee-scroll 15s linear infinite;
                 }
-                @keyframes marquee-smooth {
+                @keyframes announcement-marquee-scroll {
                   0% { transform: translateX(0); }
                   100% { transform: translateX(-50%); }
                 }
-                .shiny-text {
-                  position: relative;
-                  background: linear-gradient(90deg, #8351f7 20%, #06b6d4 40%, #fff 60%, #8351f7 80%);
-                  background-size: 200% auto;
-                  color: transparent;
-                  background-clip: text;
-                  -webkit-background-clip: text;
-                  animation: shiny-move 2.5s linear infinite;
-                  -webkit-text-fill-color: transparent;
-                  filter: drop-shadow(0 0 6px #8351f7aa);
+                .announcement-text {
+                  color:rgb(222, 222, 222);
+                  font-family: 'Cinzel', serif;
+                  font-weight: 300;
+                  font-size: 1.05rem;
+                  margin: 0 1.2rem;
+                  /* Removed text-shadow and filter for no glow */
+                  display: inline-block;
+                  opacity: 0.96;
+                  transition: opacity 2s;
                 }
-                @keyframes shiny-move {
-                  0% { background-position: 200% 0; }
-                  100% { background-position: 0 0; }
+                @media (max-width: 640px) {
+                  .announcement-box {
+                    max-width: 95vw !important;
+                    padding-left: 0.5rem !important;
+                    padding-right: 0.5rem !important;
+                  }
+                  .announcement-text {
+                    font-size: 0.93rem;
+                    margin: 0 0.5rem;
+                  }
                 }
-                .shimmer {
+                .announcement-box {
                   position: relative;
                   overflow: hidden;
-                  background: #fff;
-                  transition: box-shadow 0.3s;
-                  border: 2px solid transparent;
-                  z-index: 1;
                 }
-                .shimmer::before {
+                .announcement-box::before,
+                .announcement-box::after {
                   content: '';
                   position: absolute;
-                  inset: -2px;
+                  top: 0;
+                  width: 28px;
+                  height: 100%;
                   z-index: 2;
-                  border-radius: inherit;
-                  padding: 2px;
-                  background: linear-gradient(120deg, #8351f7, #06b6d4, #fff, #8351f7 90%);
-                  background-size: 400% 400%;
-                  animation: border-shine 5s linear infinite;
                   pointer-events: none;
-                  mask:
-                    linear-gradient(#fff 0 0) content-box,
-                    linear-gradient(#fff 0 0);
-                  mask-composite: exclude;
-                  -webkit-mask:
-                    linear-gradient(#fff 0 0) content-box,
-                    linear-gradient(#fff 0 0);
-                  -webkit-mask-composite: xor;
                 }
-                @keyframes border-shine {
-                  0% { background-position: 0% 50%; }
-                  100% { background-position: 100% 50%; }
+                .announcement-box::before {
+                  left: 0;
+                  background: linear-gradient(to right, #111 0%, transparent 100%);
                 }
-                .shimmer .shiny-btn-text {
-                  color: #8351f7;
-                  background: none;
-                  background-clip: unset;
-                  -webkit-background-clip: unset;
-                  -webkit-text-fill-color: unset;
-                  filter: none;
-                  animation: none;
+                .announcement-box::after {
+                  right: 0;
+                  background: linear-gradient(to left, #111 0%, transparent 100%);
                 }
               `}
             </style>
           </div>
+
           <h2 className="text-xl md:text-2xl mb-4 font-semibold">
             September 6-7, 2025
           </h2>
@@ -421,7 +357,7 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               type="button"
-              className="neon-button flex items-center justify-center gap-2 border-shine"
+              className="neon-button flex items-center justify-center gap-2"
               onClick={() => navigate('/Register')}
             >
               <svg
@@ -437,7 +373,7 @@ export default function HeroSection() {
               Register Now
             </button>
             <button
-              className="neon-button flex items-center justify-center gap-2 font-semibold border-shine"
+              className="neon-button flex items-center justify-center gap-2 font-semibold"
               onClick={() => window.open('/AbstractTemplate.pdf', '_blank')}
             >
               <span className="w-full text-center">Abstract Template</span>
@@ -452,75 +388,9 @@ export default function HeroSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
               </svg>
             </button>
-            <style>
-              {`
-                .border-shine {
-                  position: relative;
-                  z-index: 1;
-                  overflow: hidden;
-                  border: none !important;
-                  /* Add slight shadow */
-                  box-shadow: 0 2px 12px 0 rgba(131,81,247,0.10), 0 1.5px 6px 0 rgba(6,182,212,0.08);
-                }
-                .border-shine::before {
-                  content: '';
-                  position: absolute;
-                  inset: 0;
-                  border-radius: inherit;
-                  padding: 2px;
-                  background: linear-gradient(120deg, #8351f7, #06b6d4, #fff, #8351f7 90%);
-                  background-size: 400% 400%;
-                  animation: border-shine 7s linear infinite;
-                  z-index: 2;
-                  pointer-events: none;
-                  mask:
-                    linear-gradient(#fff 0 0) content-box,
-                    linear-gradient(#fff 0 0);
-                  mask-composite: exclude;
-                  -webkit-mask:
-                    linear-gradient(#fff 0 0) content-box,
-                    linear-gradient(#fff 0 0);
-                  -webkit-mask-composite: xor;
-                }
-                @keyframes border-shine {
-                  0% { background-position: 0% 50%; }
-                  100% { background-position: 100% 50%; }
-                }
-                .neon-button {
-                  background: transparent;
-                  border: none;
-                  color: #8351f7;
-                  padding: 0.75rem 1.5rem;
-                  border-radius: 0.5rem;
-                  font-weight: 600;
-                  box-shadow: none;
-                  transition: background 0.2s, color 0.2s;
-                  position: relative;
-                  z-index: 1;
-                }
-                .neon-button:hover, .neon-button:focus {
-                  background: #8351f7;
-                  color: #fff;
-                }
-                .shimmer-icon {
-                  filter: drop-shadow(0 0 6px #fff) brightness(1.2);
-                  animation: shimmer-icon 2s linear infinite;
-                }
-                @keyframes shimmer-icon {
-                  0% { filter: drop-shadow(0 0 6px #fff) brightness(1.2); }
-                  50% { filter: drop-shadow(0 0 16px #fff) brightness(2); }
-                  100% { filter: drop-shadow(0 0 6px #fff) brightness(1.2); }
-                }
-              `}
-            </style>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
-/* Add shimmer effect styles (in your CSS or Tailwind config) */
-// .shimmer, .animate-marquee, and keyframes should be placed in your global CSS file if needed.
-
-
