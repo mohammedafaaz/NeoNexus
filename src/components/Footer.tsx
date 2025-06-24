@@ -30,6 +30,27 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
+            {/* Feedback link below social icons */}
+            <div className="mt-4 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4 mr-2 text-[var(--primary)]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.8l-4 1 1-3.5A7.96 7.96 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              <button
+                className="text-base font-bold text-[var(--primary)] hover:var(--secondary) focus:outline-none"
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: "'Orbitron', sans-serif" }}
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSf04ac-gAuE4y6bpSvnzbW7ew-Gs3yWhWivPFRIXWlW8TH4Sw/viewform?usp=dialog', '_blank')}
+                type="button"
+              >
+                GIVE FEEDBACK
+              </button>
+            </div>
           </div>
           
           {/* Quick Links */}
@@ -38,19 +59,11 @@ export default function Footer() {
             <ul className="space-y-2 text-[var(--foreground-muted)]">
               <li><a href="#" className="hover:text-[var(--primary)]">About</a></li>
               <li><a href="#tracks" className="hover:text-[var(--primary)]">Domains</a></li>
-              <li><a href="#tracks" className="hover:text-[var(--primary)]">Event Phases</a></li>
+              <li><a href="#phases" className="hover:text-[var(--primary)]">Event Phases</a></li>
               <li><a href="#prizes" className="hover:text-[var(--primary)]">Prizes</a></li>
               <li><a href="#schedule" className="hover:text-[var(--primary)]">Schedule</a></li>
               <li><a href="#faq" className="hover:text-[var(--primary)]">FAQ</a></li>
               <li><a href="#sponsors" className="hover:text-[var(--primary)]">Sponsors</a></li>
-              <li>
-                <a
-                  href="/developers"
-                  className="hover:text-[var(--primary)] transition-colors"
-                >
-                  Developers
-                </a>
-              </li>
             </ul>
           </div>
           
@@ -64,7 +77,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-[var(--primary)] mr-2" />
-                <a href="mailto:abdulbitm@ieee.org" className="hover:text-[var(--primary)] mr-2">abdulbitm@ieee.org</a>,
+                <a href="mailto:abdulbitm@ieee.org" className="hover:text-[var(--primary)] mr-2">abdulbitm@ieee.org</a>
+                <br/>
                 <a href="mailto:neonexus36.0@gmail.com" className="hover:text-[var(--primary)] ml-2">neonexus36.0@gmail.com</a>
               </li>
               <li className="flex items-center">
