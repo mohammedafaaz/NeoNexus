@@ -47,23 +47,22 @@ export default function BrochureSection() {
   // If no uploaded PDF, fallback to public brochure
   const fallbackPdfUrl = "/NNbrochure.pdf";
   const actualPdfUrl = pdfUrl || fallbackPdfUrl;
-  const actualPdfName = pdfName || "NeoNexusBrochure.pdf";
+  const actualPdfName = pdfName || "/NNbrochure.pdf";
 
   const handleDownload = () => {
     if (!actualPdfUrl) {
       alert('Brochure will be available soon. Please check back later.');
       return;
     }
-    // Create temporary anchor element
-    const link = document.createElement('a');
-    link.href = actualPdfUrl;
-    link.download = actualPdfName || 'NNbrochure.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    // Open the PDF in a new tab after download
+    // Open the PDF in a new tab (let browser handle download/view)
     window.open(actualPdfUrl, '_blank');
+    // Optionally, if you want to force download, uncomment below:
+    // const link = document.createElement('a');
+    // link.href = actualPdfUrl;
+    // link.download = actualPdfName || 'NNbrochure.pdf';
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
   };
 
   const handleShare = async () => {
@@ -200,3 +199,4 @@ export default function BrochureSection() {
 }
 `}
 </style>
+
