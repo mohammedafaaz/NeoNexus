@@ -56,13 +56,13 @@ export default function BrochureSection() {
     }
     // Open the PDF in a new tab (let browser handle download/view)
     window.open(actualPdfUrl, '_blank');
-    // Optionally, if you want to force download, uncomment below:
-    // const link = document.createElement('a');
-    // link.href = actualPdfUrl;
-    // link.download = actualPdfName || 'NNbrochure.pdf';
-    // document.body.appendChild(link);
-    // link.click();
-    // document.body.removeChild(link);
+    
+    const link = document.createElement('a');
+    link.href = actualPdfUrl;
+    link.download = actualPdfName || 'NNbrochure.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleShare = async () => {
