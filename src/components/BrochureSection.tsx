@@ -46,8 +46,8 @@ export default function BrochureSection() {
   };
 
   // If no uploaded PDF, fallback to public brochure
-  const fallbackPdfUrl = "/NNbrochure.pdf";
-  const actualPdfUrl = pdfUrl || fallbackPdfUrl;
+  const fallbackPdfUrl = "/brochure.pdf";
+  const actualPdfUrl = pdfUrl || "/brochure.pdf";
 
   const handleDownload = () => {
     if (!actualPdfUrl) {
@@ -58,7 +58,7 @@ export default function BrochureSection() {
     // Create temporary anchor element
     const link = document.createElement('a');
     link.href = actualPdfUrl;
-    link.download = 'NeoNexusBrochure.pdf';
+    link.download = '/brochure.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
