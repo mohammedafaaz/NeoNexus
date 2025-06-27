@@ -57,7 +57,7 @@ export default function BrochureSection() {
     // Create temporary anchor element
     const link = document.createElement('a');
     link.href = actualPdfUrl;
-    link.download = actualPdfName;
+    link.download = actualPdfName || 'NNbrochure.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
