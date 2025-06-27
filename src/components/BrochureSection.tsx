@@ -46,7 +46,6 @@ export default function BrochureSection() {
   };
 
   // If no uploaded PDF, fallback to public brochure
-  const fallbackPdfUrl = "/brochure.pdf";
   const actualPdfUrl = pdfUrl || "/brochure.pdf";
 
   const handleDownload = () => {
@@ -57,8 +56,8 @@ export default function BrochureSection() {
     setDownloading(true); // Show downloading message
     // Create temporary anchor element
     const link = document.createElement('a');
-    link.href = actualPdfUrl;
-    link.download = '/brochure.pdf';
+    link.href = '/brochure.pdf';
+    link.download = 'NeoNexus_Hackathon_Brochure.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
