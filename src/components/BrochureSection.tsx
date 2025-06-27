@@ -31,6 +31,7 @@ export default function BrochureSection() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [showAdminControls, setShowAdminControls] = useState(false);
   const [shareMessage, setShareMessage] = useState<string | null>(null);
+  const [downloading, setDownloading] = useState(false); // <-- add state
   const { pdfUrl, isAdmin, setIsAdmin } = usePDF();
 
   // Toggle admin mode with secret key combination (Ctrl + Alt + A)
@@ -53,16 +54,17 @@ export default function BrochureSection() {
       alert('Brochure will be available soon. Please check back later.');
       return;
     }
+    setDownloading(true); // Show downloading message
     // Create temporary anchor element
     const link = document.createElement('a');
-    link.href = '/brochure.pdf'
+    link.href = actualPdfUrl;
     link.download = 'NeoNexusBrochure.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
-    // Open the PDF in a new tab after download
-    window.open(actualPdfUrl, '_blank');
+    setTimeout(() => setDownloading(false), 2000); // Hide message after 2s
+    // Do NOT open the PDF in a new tab (removes 404 page)
   };
 
   const handleShare = async () => {
@@ -142,6 +144,12 @@ export default function BrochureSection() {
                 )}
               </div>
               
+              {downloading && (
+                <div className="mt-4 p-2 bg-[var(--primary)]/20 rounded text-sm flex items-center">
+                  PDF is downloading...
+                </div>
+              )}
+
               {shareMessage && (
                 <div className="mt-4 p-2 bg-[var(--primary)]/20 rounded text-sm flex items-center">
                   {shareMessage}
