@@ -45,7 +45,7 @@ export default function BrochureSection() {
   };
 
   // If no uploaded PDF, fallback to public brochure
-  const fallbackPdfUrl = "/NNBrochure.pdf";
+  const fallbackPdfUrl = "/NNbrochure.pdf";
   const actualPdfUrl = pdfUrl || fallbackPdfUrl;
   const actualPdfName = pdfName || "NeoNexusBrochure.pdf";
 
