@@ -57,7 +57,7 @@ export default function BrochureSection() {
     // Create temporary anchor element
     const link = document.createElement('a');
     link.href = '/brochure.pdf';
-    link.download = 'NeoNexus_Hackathon_Brochure.pdf';
+    link.download = '/brochure.pdf'; // Set the desired file name
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
