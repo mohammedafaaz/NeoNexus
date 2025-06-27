@@ -31,7 +31,7 @@ export default function BrochureSection() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [showAdminControls, setShowAdminControls] = useState(false);
   const [shareMessage, setShareMessage] = useState<string | null>(null);
-  const { pdfUrl, pdfName, isAdmin, setIsAdmin } = usePDF();
+  const { pdfUrl, isAdmin, setIsAdmin } = usePDF();
 
   // Toggle admin mode with secret key combination (Ctrl + Alt + A)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -47,7 +47,6 @@ export default function BrochureSection() {
   // If no uploaded PDF, fallback to public brochure
   const fallbackPdfUrl = "/NNbrochure.pdf";
   const actualPdfUrl = pdfUrl || fallbackPdfUrl;
-  const actualPdfName = pdfName || "NeoNexusBrochure.pdf";
 
   const handleDownload = () => {
     if (!actualPdfUrl) {
@@ -56,8 +55,8 @@ export default function BrochureSection() {
     }
     // Create temporary anchor element
     const link = document.createElement('a');
-    link.href = actualPdfUrl;
-    link.download = actualPdfName;
+    link.href = '/brochure.pdf'
+    link.download = 'NeoNexusBrochure.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
