@@ -63,7 +63,7 @@ export default function BrochureSection() {
     document.body.removeChild(link);
 
     setTimeout(() => setDownloading(false), 2000); // Hide message after 2s
-    // Do NOT open the PDF in a new tab (removes 404 page)
+    
   };
 
   const handleShare = async () => {

@@ -37,7 +37,7 @@ export default function SponsorsSection() {
     { name: "CoreEl", logo: "/CoreEL-removebg.png", url: "#" },
     { name: "labteach", logo: "/labteach-removebg.png", url: "#" },
     { name: "amd", logo: "/amdlogo.png", url: "#" },
-    { name: "IMatiz", logo: "/imatiz.jpg", url: "#" }
+    { name: "inventuriz", logo: "/inventuriz.jpg", url: "#" }
   ];
 
   return (
