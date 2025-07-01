@@ -1,4 +1,4 @@
-//ctx, canvas Errors are negligible
+
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Countdown from 'react-countdown';
@@ -260,105 +260,29 @@ export default function HeroSection() {
             text="NEONEXUS  36.0"
             className="neon-animated-text text-5xl md:text-8xl font-bold mb-2 mt-32 mr-1 neon-text text-[var(--primary)]"
           />
-          <p className="text-xl md:text-2xl mb-4 text-[var(--foreground-muted)]">
-            Bridging reality and digital frontiers
+          <p className="text-xl md:text-1xl mb-4 text-[var(--foreground-muted)]">
+            Ignite, Innovate & Impact!
           </p>
 
-          {/* Announcement Box with white glowing marquee and clickable text */}
-          <div
-            className="announcement-box bg-[var(--primary)]/10 border border-[var(--primary)]/30 py-1.5 px-2 rounded-md max-w-md sm:max-w-xl mx-auto mb-6 flex items-center justify-center overflow-hidden relative"
-            style={{
-              maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
-            }}
-          >
-            <div
-              className="announcement-marquee"
-              style={{
-                display: 'flex',
-                whiteSpace: 'nowrap',
-                minWidth: '100%',
-                willChange: 'transform'
-              }}
+          {/* Abstract Submission Notice as a clickable link */}
+          <style>{`.notice-glow { text-shadow: 0 0 4px #ff1744cc, 0 0 8px #fff2; }`}</style>
+          <div className="flex justify-center mb-4">
+            <a
+              href="https://forms.gle/QzqqC1dw3dwpdYxc7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-xs md:text-xs tracking-wide animate-pulse px-4 py-2 rounded-md border border-[var(--primary)]/100 bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20 transition-colors duration-200 shadow-sm text-white flex flex-col sm:flex-row items-center gap-1 sm:gap-2 notice-glow text-center"
+              style={{ textDecoration: 'none', cursor: 'pointer', borderWidth: '0.5px' }}
             >
-              <a
-                href="https://forms.gle/QzqqC1dw3dwpdYxc7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="announcement-text neon-text"
-                style={{ cursor: 'pointer', textDecoration: 'none' }}
-              >
-                Call for Abstract - Click here to Submit - Deadline 5th August 2025 
-              </a>
-              {/* Duplicate for seamless marquee */}
-              <a
-                href="https://forms.gle/QzqqC1dw3dwpdYxc7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="announcement-text neon-text"
-                style={{ cursor: 'pointer', textDecoration: 'none' }}
-                aria-hidden="true"
-                tabIndex={-1}
-              >
-                Call for Abstract - Click here to Submit - Deadline 5th August 2025 
-              </a>
-            </div>
-            <style>
-              {`
-                .announcement-marquee {
-                  animation: announcement-marquee-scroll 15s linear infinite;
-                }
-                @keyframes announcement-marquee-scroll {
-                  0% { transform: translateX(0); }
-                  100% { transform: translateX(-50%); }
-                }
-                .announcement-text {
-                  color:rgb(222, 222, 222);
-                  font-family: 'Cinzel', serif;
-                  font-weight: 300;
-                  font-size: 1.05rem;
-                  margin: 0 1.2rem;
-                  display: inline-block;
-                  opacity: 0.96;
-                  transition: opacity 2s;
-                }
-                @media (max-width: 640px) {
-                  .announcement-box {
-                    max-width: 95vw !important;
-                    padding-left: 0.5rem !important;
-                    padding-right: 0.5rem !important;
-                  }
-                  .announcement-text {
-                    font-size: 0.93rem;
-                    margin: 0 0.5rem;
-                  }
-                }
-                .announcement-box {
-                  position: relative;
-                  overflow: hidden;
-                }
-                .announcement-box::before,
-                .announcement-box::after {
-                  content: '';
-                  position: absolute;
-                  top: 0;
-                  width: 28px;
-                  height: 100%;
-                  z-index: 2;
-                  pointer-events: none;
-                }
-                .announcement-box::before {
-                  left: 0;
-                  background: linear-gradient(to right, #111 0%, transparent 100%);
-                }
-                .announcement-box::after {
-                  right: 0;
-                  background: linear-gradient(to left, #111 0%, transparent 100%);
-                }
-              `}
-            </style>
+              <span className="flex items-center justify-center w-full sm:w-auto mb-1 sm:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-[#ff1744]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{minWidth:'1rem'}}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 9v6h4l5 5V4l-5 5H9z" />
+                </svg>
+                <span className="ml-1">Click here to Submit your Abstracts - Deadline 5th August 2025 - <span className="text-[#ff1744] font-bold w-full sm:w-auto">No fee will be charged</span></span>
+              </span>
+              
+            </a>
           </div>
-
           <h2 className="text-xl md:text-2xl mb-4 font-semibold">
             September 6-7, 2025
           </h2>

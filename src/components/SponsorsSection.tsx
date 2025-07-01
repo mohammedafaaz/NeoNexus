@@ -26,8 +26,8 @@ function FloatingBadges() {
 
 export default function SponsorsSection() {
   const organizers = [
-    { name: "BITM", logo: "/bitm-removebg.png", url: "#" },
-    { name: "IEEE Student Branch", logo: "/ieee-removebg.png", url: "#" }
+    { name: "IEEE Student Branch", logo: "/ieee-removebg.png", url: "#" },
+    { name: "BITM", logo: "/bitm-removebg.png", url: "#" }
 
   ];
 
@@ -61,7 +61,7 @@ export default function SponsorsSection() {
         <div className="text-center mb-6">
           <p className="text-lg text-gray-300">Organized By</p>
           <h3 className="text-2xl font-bold text-white mt-1">
-            Ballari Institute of Technology and Management | IEEE Student Branch
+            IEEE Student Branch | Ballari Institute of Technology and Management 
           </h3>
         </div>
 
@@ -87,7 +87,7 @@ export default function SponsorsSection() {
         <div className="text-center mb-6">
           <p className="text-lg text-gray-300">In Association With</p>
           <h3 className="text-2xl font-bold text-white mt-1">
-            BITM Sustaina | IEEE Sight
+            IEEE SIGHT | BITM Sustaina
           </h3>
         </div>
         <div className="flex justify-center gap-12 mb-12">
@@ -98,8 +98,8 @@ export default function SponsorsSection() {
             rel="noopener noreferrer"
           >
             <img
-              src="/sustaina-removebg.png"
-              alt="IEEE Sustaina"
+              src="/sight-removebg.png"
+              alt="IEEE Sight"
               className="h-20 object-contain"
             />
           </a>
@@ -110,8 +110,8 @@ export default function SponsorsSection() {
             rel="noopener noreferrer"
           >
             <img
-              src="/sight-removebg.png"
-              alt="IEEE Sight"
+              src="/sustaina-removebg.png"
+              alt="IEEE Sustaina"
               className="h-20 object-contain"
             />
           </a>

@@ -90,40 +90,40 @@ export default function TracksSection() {
 		<>
 			<section id="tracks" className="py-12 sm:py-16 relative overflow-hidden">
 				<HexGrid3D />
-        {/* 3D Decorative Element (top right) */}
-        <div className="absolute right-0 top-0 z-0 pointer-events-none">
-          <svg width="100" height="100" viewBox="0 0 100 100" className="opacity-30">
-            <defs>
-              <radialGradient id="trackgrad1" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#8351f7" />
-                <stop offset="100%" stopColor="transparent" />
-              </radialGradient>
-            </defs>
-            <circle cx="50" cy="50" r="50" fill="url(#trackgrad1)" />
-          </svg>
-        </div>
-        {/* 3D Decorative Element (bottom left) */}
-        <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-          <svg width="120" height="120" viewBox="0 0 120 120" className="opacity-30">
-            <defs>
-              <radialGradient id="trackgrad2" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#06b6d4" />
-                <stop offset="100%" stopColor="transparent" />
-              </radialGradient>
-            </defs>
-            <circle cx="60" cy="60" r="60" fill="url(#trackgrad2)" />
-          </svg>
-        </div>
+		{/* 3D Decorative Element (top right) */}
+		<div className="absolute right-0 top-0 z-0 pointer-events-none">
+		  <svg width="100" height="100" viewBox="0 0 100 100" className="opacity-30">
+			<defs>
+			  <radialGradient id="trackgrad1" cx="50%" cy="50%" r="50%">
+				<stop offset="0%" stopColor="#8351f7" />
+				<stop offset="100%" stopColor="transparent" />
+			  </radialGradient>
+			</defs>
+			<circle cx="50" cy="50" r="50" fill="url(#trackgrad1)" />
+		  </svg>
+		</div>
+		{/* 3D Decorative Element (bottom left) */}
+		<div className="absolute left-0 bottom-0 z-0 pointer-events-none">
+		  <svg width="120" height="120" viewBox="0 0 120 120" className="opacity-30">
+			<defs>
+			  <radialGradient id="trackgrad2" cx="50%" cy="50%" r="50%">
+				<stop offset="0%" stopColor="#06b6d4" />
+				<stop offset="100%" stopColor="transparent" />
+			  </radialGradient>
+			</defs>
+			<circle cx="60" cy="60" r="60" fill="url(#trackgrad2)" />
+		  </svg>
+		</div>
 				<div className="container mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
 					<h2 className="text-3xl font-bold mb-8 neon-text text-center">
 						DOMAINS
 					</h2>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
 						{tracks.map((track, index) => (
-							<div
-								key={index}
-								className="glass-panel p-5 sm:p-8 transition-all duration-300 hover:bg-white/10 group"
-							>
+			<div
+				key={index}
+				className="glass-panel p-5 sm:p-8 group"
+			>
 								<div className="flex items-center mb-4 sm:mb-6">
 									{track.icon}
 									<h3 className="text-xl sm:text-2xl font-bold ml-3">{track.title}</h3>
@@ -156,6 +156,84 @@ export default function TracksSection() {
 						))}
 					</div>
 				</div>
+
+	  {/* BONUS TRACKS SECTION */}
+	  <section id="bonus-tracks" className="py-16 relative overflow-hidden">
+		<div className="container mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
+		  <h2 className="text-3xl font-bold mb-4 neon-text text-center">BONUS TRACKS</h2>
+		  <h3 className="text-xl font-semibold mb-10 text-center text-[var(--foreground-muted)]">Explore More Challenges</h3>
+		  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+			{/* Sustainable */}
+			<div className="glass-panel p-8 flex flex-col items-center text-center min-h-[320px] group">
+			  <Leaf className="w-10 h-10 text-[var(--accent)] mb-4" />
+			  <h4 className="text-xl font-bold mb-2">SUSTAINABLE ENVIRONMENT</h4>
+			  <p className="mb-6 text-[var(--foreground-muted)]">Dive deeper into sustainability with extra unique challenges.</p>
+			  <button
+				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn"
+				style={{ background: 'none' }}
+				onClick={() => {
+				  const link = document.createElement('a');
+				  link.href = '/BonusSustainable.pdf'; 
+				  link.download = '/BonusSustainable.pdf';
+				  document.body.appendChild(link);
+				  link.click();
+				  document.body.removeChild(link);
+				  // Preview after download
+				  window.open('/BonusSustainable.pdf', '_blank');
+				}}
+			  >
+				Problem Statements
+				<Download className="ml-2 w-4 h-4 neon-text" />
+			  </button>
+			</div>
+			{/* Advanced Technology */}
+			<div className="glass-panel p-8 flex flex-col items-center text-center min-h-[320px] group">
+			  <Cpu className="w-10 h-10 text-[var(--secondary)] mb-4" />
+			  <h4 className="text-xl font-bold mb-2">ADVANCED TECHNOLOGY</h4>
+			  <p className="mb-6 text-[var(--foreground-muted)]">Unlock more tech-driven challenges and push the boundaries of innovation.</p>
+			  <button
+				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn"
+				style={{ background: 'none' }}
+				onClick={() => {
+				  const link = document.createElement('a');
+				  link.href = '/BonusAdvancedTechnology.pdf'; 
+				  link.download = '/BonusAdvancedTechnology.pdf';
+				  document.body.appendChild(link);
+				  link.click();
+				  document.body.removeChild(link);
+				  window.open('/BonusAdvancedTechnology.pdf', '_blank'); 
+				}}
+			  >
+				Problem Statements
+				<Download className="ml-2 w-4 h-4 neon-text" />
+			  </button>
+			</div>
+			{/* CyberSecurity */}
+			<div className="glass-panel p-8 flex flex-col items-center text-center min-h-[320px] group">
+			  <Shield className="w-10 h-10 text-[var(--primary)] mb-4" />
+			  <h4 className="text-xl font-bold mb-2">CYBERSECURITY THREATS</h4>
+			  <p className="mb-6 text-[var(--foreground-muted)]">Take on extra cybersecurity problems and defend the digital frontier.</p>
+			  <button
+				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn"
+				style={{ background: 'none' }}
+				onClick={() => {
+				  const link = document.createElement('a');
+				  link.href = '/BonusCyberSecurity.pdf'; 
+				  link.download = '/BonusCyberSecurity.pdf';
+				  document.body.appendChild(link);
+				  link.click();
+				  document.body.removeChild(link);
+				  window.open('/BonusCyberSecurity.pdf', '_blank'); 
+				}}
+			  >
+				Problem Statements
+				<Download className="ml-2 w-4 h-4 neon-text" />
+			  </button>
+			</div>
+		  </div>
+		</div>
+	  </section>
 			</section>
 
 			{/* PHASES SECTION */}
@@ -330,7 +408,7 @@ export default function TracksSection() {
 										</button>
 									</div>
 								</div>
-                
+				
 							) : (
 								<div className="absolute bottom-6 right-6">
 									<button
@@ -344,8 +422,8 @@ export default function TracksSection() {
 						</div>
 					</div>
 				</div>
-        <div className="mt-12 glass-panel p-6 flex flex-col items-center neon-text text-white">
-                    <p className="font-semibold mb-2 text-lg text-center">📌 Poster Presentation Opportunity</p>
+		<div className="mt-12 glass-panel p-6 flex flex-col items-center neon-text text-white">
+					<p className="font-semibold mb-2 text-lg text-center">📌 Poster Presentation Opportunity</p>
 										<p>
 											<center>Not shortlisted for the NeoNexus Hackathon?</center>
 											<center>No problem!
@@ -356,30 +434,52 @@ export default function TracksSection() {
 									</div>
 
 			</section>
-			<style>
+<style>
 {`
-.shiny-border {
+.shiny-border, .problem-btn {
   position: relative;
   z-index: 1;
   border: 2px solid transparent;
   border-radius: 0.75rem;
-  background:
-    linear-gradient(transparent, transparent) padding-box,
-    linear-gradient(90deg, #06b6d4, #8351f7, #06b6d4, #8351f7) border-box;
-  box-shadow: 0 0 6px 1px #8351f733, 0 0 12px 2px #06b6d433;
-  animation: shiny-move 2.5s linear infinite;
-  transition: box-shadow 0.2s, color 0.2s, background 0.2s;
-}
-.shiny-border:hover,
-.problem-btn:hover {
+  background: #18182a;
   color: #fff;
-  background: linear-gradient(90deg, #06b6d4cc 0%, #8351f7cc 100%);
-  box-shadow: 0 0 12px 2px #8351f7aa, 0 0 24px 4px #06b6d4aa;
-  text-shadow: 0 0 6px #8351f7, 0 0 12px #06b6d4;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s, transform 0.12s;
+  box-shadow: 0 2px 12px 0 #8351f733;
+  overflow: hidden;
 }
-@keyframes shiny-move {
-  0% { background-position: 0% 50%, 0% 50%; }
-  100% { background-position: 100% 50%, 100% 50%; }
+.shiny-border:before, .problem-btn:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  padding: 2px;
+  background: linear-gradient(120deg, #06b6d4, #8351f7, #06b6d4, #8351f7);
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+  z-index: 2;
+  -webkit-mask:
+	linear-gradient(#fff 0 0) content-box,
+	linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: border-move 3s linear infinite;
+}
+.shiny-border:hover, .problem-btn:hover {
+  color: #fff;
+  background: #23234a;
+  box-shadow: 0 6px 32px 0 #06b6d4aa;
+  transform: translateY(-2px) scale(1.03);
+}
+.shiny-border:active, .problem-btn:active {
+  background: #1a1a2e;
+  color: #06b6d4;
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px 0 #8351f755;
+}
+@keyframes border-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 `}
 </style>

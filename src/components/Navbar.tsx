@@ -159,13 +159,18 @@ export default function Navbar() {
           className="fixed inset-0 z-50 bg-[#080812]/95 backdrop-blur-md flex flex-col pt-24 overflow-y-auto"
           style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}
         >
-          <div className="flex flex-col items-center space-y-6 pb-12 px-4">
-            <button
-              onClick={() => handleNavClick('home')}
-              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
-            >
-              Back to Home
-            </button>
+          <div className="flex flex-col items-center space-y-6 pb-12 px-4 pt-8">
+            {/* Close (X) icon top right */}
+            <div className="absolute top-6 right-6 z-50">
+              <button
+                className="p-2 rounded-full focus:outline-none bg-[var(--background)]/80 hover:bg-[var(--primary)]/20 transition"
+                aria-label="Close menu"
+                onClick={() => handleNavClick('home')}
+                type="button"
+              >
+                <X size={28} className="text-[var(--primary)]" />
+              </button>
+            </div>
             <button
               onClick={() => handleNavClick('about')}
               className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
@@ -180,6 +185,12 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => handleNavClick('phases')}
+              className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
+            >
+            Bonus Tracks
+            </button>
+            <button
+              onClick={() => handleNavClick('faq')}
               className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               Event Phases
@@ -209,7 +220,7 @@ export default function Navbar() {
               Developers
             </button>
             <button
-              onClick={() => handleNavClick('faq')}
+              onClick={() => handleNavClick('bonus-tracks')}
               className="w-full max-w-xs py-3 text-white text-xl rounded-lg hover:text-[var(--primary)] focus:outline-none"
             >
               FAQ
