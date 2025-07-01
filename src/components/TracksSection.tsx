@@ -143,8 +143,8 @@ export default function TracksSection() {
 	<a
 		href={problemStatementPDFs[index]}
 		download
-		className="inline-flex items-center shiny-border px-3 py-1.5 mt-2 text-sm sm:text-base font-semibold problem-btn"
-		style={{ background: 'none' }}
+				className="inline-flex items-center shiny-border px-3 py-1.5 mt-2 text-sm sm:text-base font-semibold problem-btn bg-transparent"
+				style={{ background: 'transparent' }}
 		target="_blank"
 		rel="noopener noreferrer"
 	>
@@ -170,8 +170,8 @@ export default function TracksSection() {
 			  <h4 className="text-xl font-bold mb-2">SUSTAINABLE ENVIRONMENT</h4>
 			  <p className="mb-6 text-[var(--foreground-muted)]">Dive deeper into sustainability with extra unique challenges.</p>
 			  <button
-				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn"
-				style={{ background: 'none' }}
+				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn bg-transparent"
+				style={{ background: 'transparent' }}
 				onClick={() => {
 				  const link = document.createElement('a');
 				  link.href = '/BonusSustainable.pdf'; 
