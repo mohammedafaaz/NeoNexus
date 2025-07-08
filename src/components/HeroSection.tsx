@@ -278,7 +278,7 @@ export default function HeroSection() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-[#ff1744]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{minWidth:'1rem'}}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 9v6h4l5 5V4l-5 5H9z" />
                 </svg>
-                <span className="ml-1">Click here to Submit Abstracts - Deadline 5th August 2025 - <span className="text-[#ff1744] font-bold w-full sm:w-auto">No fee will be charged now, pay after your team is shortlisted</span></span>
+                <span className="ml-1">Click here to Submit Abstracts - Deadline 5th August 2025 - <span className="text-[#ff1744] font-bold w-full sm:w-auto">No fee will be charged now, pay after your team gets shortlisted</span></span>
               </span>
               
             </a>
