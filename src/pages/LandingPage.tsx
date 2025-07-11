@@ -380,7 +380,7 @@ export default function LandingPage() {
               animate={{ opacity: [1, 0.5, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              Enter NeoNexus...
+              Entering NeoNexus...
             </motion.div>
 
             {/* Progress Bar */}
