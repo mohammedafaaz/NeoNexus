@@ -16,7 +16,7 @@ export default function Register() {
       <main className="flex-grow container mx-auto px-4 py-24">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <Link to="/" className="neon-button inline-flex items-center mb-8">
+            <Link to="/home" className="neon-button inline-flex items-center mb-8">
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Home
             </Link>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css';
+import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
@@ -54,7 +55,8 @@ export function App() {
       <PDFProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/developers" element={<DevelopersSection />} />
             <Route path="*" element={<NotFound />} />

@@ -36,12 +36,12 @@ export default function Navbar() {
   const handleNavClick = (sectionId?: string) => {
     setIsMobileMenuOpen(false);
     if (!sectionId || sectionId === 'home') {
-      navigate('/');
+      navigate('/home');
       return;
     }
-    if (window.location.pathname !== '/') {
+    if (window.location.pathname !== '/home') {
       setPendingSection(sectionId);
-      navigate('/', { replace: false });
+      navigate('/home', { replace: false });
     } else {
       setTimeout(() => {
         const section = document.getElementById(sectionId);
@@ -165,7 +165,10 @@ export default function Navbar() {
               <button
                 className="p-2 rounded-full focus:outline-none bg-[var(--background)]/80 hover:bg-[var(--primary)]/20 transition"
                 aria-label="Close menu"
-                onClick={() => handleNavClick('home')}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate('/home');
+                }}
                 type="button"
               >
                 <X size={28} className="text-[var(--primary)]" />
