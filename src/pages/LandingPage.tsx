@@ -370,17 +370,17 @@ export default function LandingPage() {
             <div className="relative flex items-center justify-center w-20 h-20 bg-[#0F0F1A] border border-[#8B5CF6] rounded-full mb-6">
               <div className="absolute h-20 w-20 rounded-full animate-spin bg-gradient-to-b from-[#8B5CF6] to-transparent"></div>
               <div className="absolute flex items-center justify-center bg-[#0F0F1A] rounded-full h-[78px] w-[78px]">
-                <div className="text-[#8B5CF6] text-2xl font-bold">NN</div>
+                <div className="text-[#8B5CF6] text-2xl font-bold items-center justify-center">NN</div>
               </div>
             </div>
 
             {/* Loading Text with Animation */}
             <motion.div
-              className="text-[#8B5CF6] font-medium mb-4 text-lg"
+              className="text-[#8B5CF6] font-medium mb-4 text-lg items-center justify-center"
               animate={{ opacity: [1, 0.5, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              Loading 3D Experience...
+              Enter NeoNexus...
             </motion.div>
 
             {/* Progress Bar */}
