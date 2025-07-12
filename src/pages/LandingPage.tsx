@@ -104,31 +104,41 @@ export default function LandingPage() {
     }, 100);
   };
 
-  // Fast loading with aggressive timeouts
+  // Mobile-optimized loading with device detection
   useEffect(() => {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
+    const isSlowConnection = connection && connection.effectiveType &&
+                            ['slow-2g', '2g', '3g'].includes(connection.effectiveType);
+
+    // Adjust timing based on device and connection
+    const progressSpeed = isMobile ? 180 : 150;
+    const skipDelay = isMobile || isSlowConnection ? 6000 : 7000;
+    const forceSkipDelay = isMobile || isSlowConnection ? 10000 : 12000;
+
     // Faster progress simulation
     const progressInterval = setInterval(() => {
       setLoadingProgress(prev => {
         if (prev >= 85) return prev; // Stop at 85% until actual load
-        return prev + Math.random() * 20;
+        return prev + Math.random() * (isMobile ? 25 : 20);
       });
-    }, 150);
+    }, progressSpeed);
 
-    // Show skip option after just 2 seconds
+    // Show skip option earlier on mobile
     const skipTimer = setTimeout(() => {
       if (isLoading) {
         setShowSkipOption(true);
       }
-    }, 2000);
+    }, skipDelay);
 
-    // Force skip after 5 seconds to prevent long waits
+    // Force skip earlier on mobile/slow connections
     const forceSkipTimer = setTimeout(() => {
       if (isLoading) {
         setForceSkip(true);
         setIsLoading(false);
         setShowSkipOption(false);
       }
-    }, 5000);
+    }, forceSkipDelay);
 
     // Cleanup
     return () => {
@@ -170,15 +180,19 @@ export default function LandingPage() {
   }, []);
 
   const handleIframeLoad = () => {
-    // Complete the progress and add smooth transition
+    // Complete the progress but don't hide loading yet
     setLoadingProgress(100);
-    setIframeLoaded(true);
 
-    // Small delay for smooth transition
+    // Detect mobile for faster loading
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const loadDelay = isMobile ? 1500 : 2000; // Faster on mobile
+
+    // Wait for 3D model to fully load before showing button
     setTimeout(() => {
+      setIframeLoaded(true);
       setIsLoading(false);
       setShowSkipOption(false);
-    }, 500);
+    }, loadDelay);
   };
 
   const handleIframeError = () => {
@@ -225,8 +239,9 @@ export default function LandingPage() {
             style={{
               border: 0,
               pointerEvents: 'auto',
-              touchAction: 'auto',
-              background: 'transparent'
+              touchAction: 'manipulation', // Better for mobile touch
+              background: 'transparent',
+              willChange: 'transform, opacity' // Optimize for animations
             }}
             width='100%'
             height='100%'
@@ -238,13 +253,14 @@ export default function LandingPage() {
             allowFullScreen
             loading="eager"
             referrerPolicy="no-referrer-when-downgrade"
+            sandbox="allow-scripts allow-same-origin allow-forms"
             initial={{ opacity: 0 }}
             animate={{
               opacity: iframeLoaded ? 0.9 : 0,
               scale: iframeLoaded ? 1 : 1.01
             }}
             transition={{
-              duration: 0.5,
+              duration: 0.4, // Faster transition for mobile
               ease: "easeOut"
             }}
           />
@@ -378,21 +394,21 @@ export default function LandingPage() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="items-center justify-center text-center">
+          <div className="items-center justify-center text-center px-4">
             {/* Loading Text with Animation */}
             <motion.div
-              className="text-[#8B5CF6] font-medium mb-4 text-lg"
+              className="text-white font-medium mb-4 text-base sm:text-lg"
               animate={{ opacity: [1, 0.7, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
               {loadingProgress < 30 ? "Initializing..." :
-               loadingProgress < 60 ? "Loading Experience..." :
-               loadingProgress < 85 ? "Almost Ready..." :
-               "Finalizing..."}
+               loadingProgress < 60 ? "Loading 3D Model..." :
+               loadingProgress < 100 ? "Almost Ready..." :
+               "Entering NeoNexus..."}
             </motion.div>
 
-            {/* Progress Bar */}
-            <div className="w-64 h-2 bg-gray-800 rounded-full mb-4 overflow-hidden">
+            {/* Progress Bar - Responsive width */}
+            <div className="w-48 sm:w-64 h-2 bg-gray-800 rounded-full mb-4 overflow-hidden mx-auto">
               <motion.div
                 className="h-full bg-white rounded-full"
                 initial={{ width: 0 }}
@@ -402,21 +418,26 @@ export default function LandingPage() {
             </div>
 
             {/* Progress Percentage */}
-            <div className="text-[#8B5CF6] text-sm mb-4">
+            <div className="text-white text-sm mb-4">
               {Math.round(loadingProgress)}%
             </div>
 
-            {/* Skip option after 2 seconds */}
+            {/* Skip option after 2 seconds - Mobile optimized */}
             {showSkipOption && (
-              <div className="mt-6">
+              <motion.div
+                className="mt-6"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
                 <p className="text-[#8B5CF6] text-sm mb-3">Ready to explore?</p>
                 <button
                   onClick={handleExploreClick}
-                  className="neon-button text-sm px-4 py-2"
+                  className="neon-button text-sm px-6 py-3 min-h-[44px]" // Larger touch target for mobile
                 >
                   Continue to NeoNexus
                 </button>
-              </div>
+              </motion.div>
             )}
           </div>
         </motion.div>
@@ -461,18 +482,46 @@ export default function LandingPage() {
           }
         }
 
-        /* Optimized iframe for better performance */
+        /* Optimized iframe for better performance - Mobile responsive */
         .landing-iframe {
           min-height: 100vh;
           min-width: 100vw;
           object-fit: cover;
           pointer-events: auto !important;
-          touch-action: auto !important;
+          touch-action: manipulation !important; /* Better mobile touch */
           user-select: none;
           opacity: 0.9;
           will-change: opacity, transform; /* Optimize for animations */
           transform: translateZ(0); /* Force hardware acceleration */
           backface-visibility: hidden; /* Optimize rendering */
+          -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+
+        /* Mobile-specific optimizations */
+        @media (max-width: 768px) {
+          .landing-iframe {
+            opacity: 0.85; /* Slightly more transparent on mobile */
+            transform: translateZ(0) scale(1.01); /* Slight scale for better mobile rendering */
+          }
+
+          .neon-button {
+            min-height: 44px; /* iOS recommended touch target */
+            font-size: 0.875rem;
+            padding: 0.75rem 1.5rem;
+          }
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+          .landing-iframe {
+            transition: none;
+          }
+
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
         }
 
         /* Ensure the iframe container allows mouse events */

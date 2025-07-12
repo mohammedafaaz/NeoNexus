@@ -75,7 +75,7 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 text-[var(--primary)] mt-0.5 mr-2" />
                 <a href="https://www.google.com/maps/place/Ballari+Institute+of+Technology+%26+Management/@15.1683067,76.8507761,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb712e70b405543:0x31ac9483bd758def!8m2!3d15.1683067!4d76.8507761!16s%2Fg%2F11cm05p6v7?hl=en-US&entry=ttu&g_ep=EgoyMDI1MDYxNy4wIKXMDSoASAFQAw%3D%3D" className="hover:text-[var(--primary)]"><span>BITM Campus, Jnana Gangothri, Ballari, Karnataka - 583104</span></a>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center justify-center">
                 <Mail className="w-5 h-5 text-[var(--primary)] mr-2" />
                 <a href="mailto:abdulbitm@ieee.org" className="hover:text-[var(--primary)] mr-2">abdulbitm@ieee.org</a>
                 <br/>
@@ -91,7 +91,7 @@ export default function Footer() {
         
         <div className="border-t border-white/10 pt-6 text-center">
           <p className="text-sm text-[var(--foreground-muted)] mb-2">
-            © 2025 NeoNexus Hackathon. All rights reserved. Organized by Ballari Institute of Technology and Management | IEEE Student Branch.
+            NeoNexus Hackathon 2025 | Organized by BITM IEEE Student Branch | Ballari Institute of Technology and Management.
           </p>
         </div>
       </div>
