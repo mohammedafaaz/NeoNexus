@@ -24,7 +24,7 @@ function DecryptText({ text, className }: { text: string; className?: string }) 
         }
         setDisplayed(revealed + randomPart);
         frame++;
-        raf = window.setTimeout(decryptStep, 120); // time for completing the text effect
+        raf = window.setTimeout(decryptStep, 90); // time for completing the text effect
       } else {
         setDisplayed(text);
       }
@@ -255,7 +255,7 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center mt-24">
         <div className="mb-4">
-          {/* Remove logo from here */}
+          
           <DecryptText
             text="NEONEXUS  36.0"
             className="neon-animated-text text-5xl md:text-8xl font-bold mb-2 mt-32 mr-1 neon-text text-[var(--primary)]"

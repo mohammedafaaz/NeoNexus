@@ -1,121 +1,76 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// CosmicStarfield component: 3D starfield with slow movement (from HeroSection)
-function CosmicStarfield() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const starsRef = useRef<any[]>([]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    const dpr = window.devicePixelRatio || 1;
-    let width = canvas.offsetWidth * dpr;
-    let height = canvas.offsetHeight * dpr;
-    canvas.width = width;
-    canvas.height = height;
-
-    const STAR_COUNT = 120; // More stars for full screen
-    const STAR_SPEED = 0.15; // Slightly slower for landing page
-
-    function resetStar(star: any) {
-      star.x = (Math.random() - 0.5) * width * 1.2;
-      star.y = (Math.random() - 0.5) * height * 1.2;
-      star.z = Math.random() * width * 0.5 + width * 0.2;
-      star.pz = star.z;
-      star.size = 0.7 + Math.random() * 1.7;
-      star.color = `hsl(${260 + Math.random() * 60}, 100%, ${60 + Math.random() * 30}%)`;
-    }
-
-    // Initialize stars
-    starsRef.current = Array.from({ length: STAR_COUNT }).map(() => {
-      const star: any = {};
-      resetStar(star);
-      return star;
-    });
-
-    function draw() {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, width, height);
-
-      for (const star of starsRef.current) {
-        // Move star forward in z
-        star.pz = star.z;
-        star.z -= STAR_SPEED * dpr;
-
-        // Project to 2D
-        const sx = width / 2 + (star.x / star.z) * width * 0.4;
-        const sy = height / 2 + (star.y / star.z) * height * 0.4;
-        const px = width / 2 + (star.x / star.pz) * width * 0.4;
-        const py = height / 2 + (star.y / star.pz) * height * 0.4;
-
-        // Fade in/out at edges
-        let alpha = 1;
-        if (star.z < 60 || sx < 0 || sx > width || sy < 0 || sy > height) {
-          resetStar(star);
-          continue;
-        }
-        if (star.z > width * 0.6) alpha = 0.2 + 0.8 * (1 - (star.z - width * 0.2) / (width * 0.4));
-
-        // Draw star trail
-        ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.strokeStyle = star.color;
-        ctx.shadowColor = star.color;
-        ctx.shadowBlur = 8;
-        ctx.lineWidth = star.size;
-        ctx.beginPath();
-        ctx.moveTo(px, py);
-        ctx.lineTo(sx, sy);
-        ctx.stroke();
-        ctx.restore();
-
-        // Draw star point
-        ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.beginPath();
-        ctx.arc(sx, sy, star.size * 0.7, 0, 2 * Math.PI);
-        ctx.fillStyle = star.color;
-        ctx.shadowColor = star.color;
-        ctx.shadowBlur = 12;
-        ctx.fill();
-        ctx.restore();
-      }
-
-      animationFrameId = requestAnimationFrame(draw);
-    }
-
-    draw();
-
-    function handleResize() {
-      if (!canvas) return;
-      width = canvas.offsetWidth * dpr;
-      height = canvas.offsetHeight * dpr;
-      canvas.width = width;
-      canvas.height = height;
-    }
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+// Static stars background for optimal performance
+function StaticBackground() {
   return (
-    <canvas
-      ref={canvasRef}
+    <div
       className="fixed inset-0 w-full h-full z-0 pointer-events-none"
       style={{
-        width: '100%',
-        height: '100%',
-        background: 'radial-gradient(ellipse at 50% 60%, #0a0a16 0%, #000000 100%)'
+        background: `
+          radial-gradient(ellipse at 50% 60%, #0a0a16 0%, #000000 100%),
+          radial-gradient(1px 1px at 20px 30px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 40px 70px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 90px 40px, #EC4899, transparent),
+          radial-gradient(1px 1px at 130px 80px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 160px 30px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 200px 50px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 250px 90px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 300px 20px, #EC4899, transparent),
+          radial-gradient(1px 1px at 350px 60px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 380px 100px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 420px 40px, #EC4899, transparent),
+          radial-gradient(1px 1px at 450px 80px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 480px 20px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 520px 110px, #EC4899, transparent),
+          radial-gradient(1px 1px at 550px 50px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 580px 90px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 620px 30px, #EC4899, transparent),
+          radial-gradient(1px 1px at 650px 70px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 680px 120px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 720px 60px, #EC4899, transparent),
+          radial-gradient(1px 1px at 750px 100px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 780px 40px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 820px 80px, #EC4899, transparent),
+          radial-gradient(1px 1px at 850px 20px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 880px 110px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 920px 50px, #EC4899, transparent),
+          radial-gradient(1px 1px at 950px 90px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 980px 30px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1020px 70px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1050px 120px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1080px 60px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1120px 100px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1150px 40px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1180px 80px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1220px 20px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1250px 110px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1280px 50px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1320px 90px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1350px 30px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1380px 70px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1420px 120px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1450px 60px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1480px 100px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1520px 40px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1550px 80px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1580px 20px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1620px 110px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1650px 50px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1680px 90px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1720px 30px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1750px 70px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1780px 120px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1820px 60px, #EC4899, transparent),
+          radial-gradient(1px 1px at 1850px 100px, #8B5CF6, transparent),
+          radial-gradient(1px 1px at 1880px 40px, #06B6D4, transparent),
+          radial-gradient(1px 1px at 1920px 80px, #EC4899, transparent)
+        `,
+        backgroundRepeat: 'repeat',
+        backgroundSize: '1920px 150px',
+        opacity: 0.6
       }}
     />
   );
@@ -130,6 +85,7 @@ export default function LandingPage() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [forceSkip, setForceSkip] = useState(false);
 
   const handleExploreClick = () => {
     // Prevent multiple clicks during animation
@@ -148,27 +104,37 @@ export default function LandingPage() {
     }, 100);
   };
 
-  // Progressive loading with timeout and progress simulation
+  // Fast loading with aggressive timeouts
   useEffect(() => {
-    // Simulate loading progress for better UX
+    // Faster progress simulation
     const progressInterval = setInterval(() => {
       setLoadingProgress(prev => {
-        if (prev >= 90) return prev; // Stop at 90% until actual load
-        return prev + Math.random() * 15;
+        if (prev >= 85) return prev; // Stop at 85% until actual load
+        return prev + Math.random() * 20;
       });
-    }, 200);
+    }, 150);
 
-    // Show skip option after 3 seconds (reduced from 5)
+    // Show skip option after just 2 seconds
     const skipTimer = setTimeout(() => {
       if (isLoading) {
         setShowSkipOption(true);
       }
-    }, 3000);
+    }, 2000);
+
+    // Force skip after 5 seconds to prevent long waits
+    const forceSkipTimer = setTimeout(() => {
+      if (isLoading) {
+        setForceSkip(true);
+        setIsLoading(false);
+        setShowSkipOption(false);
+      }
+    }, 5000);
 
     // Cleanup
     return () => {
       clearInterval(progressInterval);
       clearTimeout(skipTimer);
+      clearTimeout(forceSkipTimer);
     };
   }, [isLoading]);
 
@@ -212,7 +178,7 @@ export default function LandingPage() {
     setTimeout(() => {
       setIsLoading(false);
       setShowSkipOption(false);
-    }, 300);
+    }, 500);
   };
 
   const handleIframeError = () => {
@@ -223,8 +189,8 @@ export default function LandingPage() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-[var(--background)]">
-      {/* 3D Cosmic Starfield Background */}
-      <CosmicStarfield />
+      {/* Static Background for Performance */}
+      <StaticBackground />
 
       <AnimatePresence mode="wait">
         {!isNavigating && (
@@ -245,54 +211,99 @@ export default function LandingPage() {
           >
 
 
-      {/* Fullscreen 3D Spline Background */}
-      <motion.div
-        className="absolute inset-0 w-full h-full z-10"
-        style={{ pointerEvents: 'auto' }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <motion.iframe
-          src='https://my.spline.design/nexbotrobotcharacterconcept-FmcY7zMA9c0sQuXBnq47TG0R/'
-          style={{
-            border: 0,
-            pointerEvents: 'auto',
-            touchAction: 'auto',
-            background: 'transparent'
-          }}
-          width='100%'
-          height='100%'
-          className="w-full h-full landing-iframe"
-          title="NeoNexus 3D Robot"
-          onLoad={handleIframeLoad}
-          onError={handleIframeError}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          loading="eager"
+      {/* Optimized 3D Spline Background - Only load if not force skipped */}
+      {!forceSkip && (
+        <motion.div
+          className="absolute inset-0 w-full h-full z-10"
+          style={{ pointerEvents: 'auto' }}
           initial={{ opacity: 0 }}
-          animate={{
-            opacity: iframeLoaded ? 1 : 0,
-            scale: iframeLoaded ? 1 : 1.02
-          }}
-          transition={{
-            duration: 0.8,
-            ease: "easeOut",
-            delay: iframeLoaded ? 0.2 : 0
-          }}
-        />
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.iframe
+            src='https://my.spline.design/nexbotrobotcharacterconcept-FmcY7zMA9c0sQuXBnq47TG0R/'
+            style={{
+              border: 0,
+              pointerEvents: 'auto',
+              touchAction: 'auto',
+              background: 'transparent'
+            }}
+            width='100%'
+            height='100%'
+            className="w-full h-full landing-iframe"
+            title="NeoNexus 3D Robot"
+            onLoad={handleIframeLoad}
+            onError={handleIframeError}
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            loading="eager"
+            referrerPolicy="no-referrer-when-downgrade"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: iframeLoaded ? 0.9 : 0,
+              scale: iframeLoaded ? 1 : 1.01
+            }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut"
+            }}
+          />
+        </motion.div>
+      )}
 
-        {/* Subtle overlay to help blend 3D model with webapp theme */}
-        <div className="absolute inset-0 pointer-events-none"
-             style={{
-               background: 'linear-gradient(45deg, rgba(131, 81, 247, 0.02) 0%, transparent 100%, rgba(6, 182, 212, 0.02) 100%)',
-               mixBlendMode: 'overlay'
-             }}>
-        </div>
-      </motion.div>
+      {/* Fallback message when force skipped */}
+      {forceSkip && (
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="text-center glass-panel p-6 max-w-md mx-4">
+            <div className="text-[#8B5CF6] text-4xl mb-4">🚀</div>
+            <h3 className="text-lg font-semibold mb-2 text-[var(--primary)]">Ready to Explore!</h3>
+            <p className="text-[var(--foreground-muted)] text-sm mb-4">
+              Experience optimized for faster loading
+            </p>
+            <motion.button
+              onClick={handleExploreClick}
+              disabled={isTransitioning || isNavigating}
+              className="neon-button flex items-center justify-center gap-2 mx-auto"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>Explore NeoNexus</span>
+              <ArrowRight className="w-4 h-4" />
+            </motion.button>
+          </div>
+        </motion.div>
+      )}
 
-      {/* Overlay Content - Only show when not loading */}
-      {!isLoading && !hasError && (
+      {/* Subtle overlay to help blend 3D model with webapp theme */}
+      <div className="absolute inset-0 pointer-events-none z-5"
+           style={{
+             background: 'linear-gradient(45deg, rgba(131, 81, 247, 0.02) 0%, transparent 100%, rgba(6, 182, 212, 0.02) 100%)',
+             mixBlendMode: 'overlay'
+           }}>
+      </div>
+
+      {/* Subtle loading indicator when waiting for model */}
+      {!isLoading && !iframeLoaded && !forceSkip && !hasError && (
+        <motion.div
+          className="absolute bottom-8 right-8 z-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex items-center gap-2 glass-panel px-3 py-2">
+            <div className="w-3 h-3 rounded-full bg-[#8B5CF6] animate-pulse"></div>
+            <span className="text-[#8B5CF6] text-xs">Loading 3D Model...</span>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Overlay Content - Only show when model is loaded or force skipped */}
+      {(iframeLoaded || forceSkip) && !isLoading && !hasError && (
         <div className="absolute inset-0 flex flex-col justify-end items-center pb-16 px-4 z-10 pointer-events-none">
           {/* Optional: Add a subtle gradient overlay for better button visibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
@@ -347,7 +358,9 @@ export default function LandingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              <center>3D Model Implemented from Spline</center>
+              <center>
+                {iframeLoaded ? "3D Model Implmented from Spline" : forceSkip ? "Experience Optimized" : "3D Model Loaded"}
+              </center>
             </motion.p>
           </div>
         </div>
@@ -365,28 +378,23 @@ export default function LandingPage() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="text-center">
-            {/* Enhanced Loading Spinner */}
-            <div className="relative flex items-center justify-center w-20 h-20 bg-[#0F0F1A] border border-[#8B5CF6] rounded-full mb-6">
-              <div className="absolute h-20 w-20 rounded-full animate-spin bg-gradient-to-b from-[#8B5CF6] to-transparent"></div>
-              <div className="absolute flex items-center justify-center bg-[#0F0F1A] rounded-full h-[78px] w-[78px]">
-                <div className="text-[#8B5CF6] text-2xl font-bold items-center justify-center">NN</div>
-              </div>
-            </div>
-
+          <div className="items-center justify-center text-center">
             {/* Loading Text with Animation */}
             <motion.div
-              className="text-[#8B5CF6] font-medium mb-4 text-lg items-center justify-center"
-              animate={{ opacity: [1, 0.5, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="text-[#8B5CF6] font-medium mb-4 text-lg"
+              animate={{ opacity: [1, 0.7, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
             >
-              Entering NeoNexus...
+              {loadingProgress < 30 ? "Initializing..." :
+               loadingProgress < 60 ? "Loading Experience..." :
+               loadingProgress < 85 ? "Almost Ready..." :
+               "Finalizing..."}
             </motion.div>
 
             {/* Progress Bar */}
             <div className="w-64 h-2 bg-gray-800 rounded-full mb-4 overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4] rounded-full"
+                className="h-full bg-white rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${Math.min(loadingProgress, 100)}%` }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
@@ -398,15 +406,15 @@ export default function LandingPage() {
               {Math.round(loadingProgress)}%
             </div>
 
-            {/* Skip option after 5 seconds */}
+            {/* Skip option after 2 seconds */}
             {showSkipOption && (
               <div className="mt-6">
-                <p className="text-[#8B5CF6] text-sm mb-3">Taking too long?</p>
+                <p className="text-[#8B5CF6] text-sm mb-3">Ready to explore?</p>
                 <button
                   onClick={handleExploreClick}
                   className="neon-button text-sm px-4 py-2"
                 >
-                  Skip to Main Site
+                  Continue to NeoNexus
                 </button>
               </div>
             )}
