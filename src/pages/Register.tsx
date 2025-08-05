@@ -115,7 +115,7 @@ export default function Register() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="glass-panel p-4 text-center">
                     <h3 className="font-bold mb-2 text-[var(--secondary)]">IMPORTANT DATES</h3>
-                    <p className="text-sm">Abstract Submission Deadline: August 5, 2025</p>
+                    <p className="text-sm">Abstract Submission Deadline: August 7, 2025</p>
                   </div>
                   <div className="glass-panel p-4 text-center">
                     <h3 className="font-bold mb-2 text-[var(--accent)]">TEAM SIZE</h3>
