@@ -268,7 +268,7 @@ export default function HeroSection() {
           <style>{`.notice-glow { text-shadow: 0 0 4px #ff1744cc, 0 0 8px #fff2; }`}</style>
           <div className="flex justify-center mb-4">
             <a
-              href="https://forms.gle/QzqqC1dw3dwpdYxc7"
+              href="#" //Paste imp link here
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold text-xs md:text-xs tracking-wide animate-pulse px-4 py-2 rounded-md border border-[var(--primary)]/100 bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20 transition-colors duration-200 shadow-sm text-white flex flex-col sm:flex-row items-center gap-1 sm:gap-2 notice-glow text-center"
@@ -278,8 +278,9 @@ export default function HeroSection() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-[#ff1744]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{minWidth:'1rem'}}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 9v6h4l5 5V4l-5 5H9z" />
                 </svg>
-                <span className="ml-1">Click here to Submit Abstracts - Deadline 7th August 2025 - <span className="text-[#ff1744] font-bold w-full sm:w-auto">No fee will be charged now, pay after your team gets shortlisted</span></span>
+                <span className="text-[#ff1744] ml-1">Registrations Closed!</span>
               </span>
+              <span className="text-white font-bold w-full sm:w-auto block mt-1">Results will be announced on 15th,16th of August 2025 - Respective Team Leader will be notified via email.</span>
               
             </a>
           </div>

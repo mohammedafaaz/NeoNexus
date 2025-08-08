@@ -259,7 +259,7 @@ export default function TracksSection() {
 								Submit your team’s idea based on a problem statement in your chosen domain.
 								<br />
 								<br />
-								📅 Deadline: August 7, 2025
+								📅 Deadline: Registrations Closed!
 							</p>
 							{expandedPhase === 1 ? (
 								<div className="mt-4 text-[var(--foreground-muted)] flex flex-col flex-grow justify-between h-full">
@@ -277,17 +277,6 @@ export default function TracksSection() {
 										</ul>
 									</div>
 									<div className="flex gap-4 justify-center mt-6">
-										<button
-											className="neon-button"
-											onClick={() =>
-												window.open(
-													'https://forms.gle/QzqqC1dw3dwpdYxc7',
-													'_blank'
-												)
-											}
-										>
-											Register
-										</button>
 										<button
 											className="neon-button"
 											onClick={() => setExpandedPhase(null)}
