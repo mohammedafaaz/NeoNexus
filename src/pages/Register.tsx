@@ -96,26 +96,22 @@ export default function Register() {
                 <br/>
         
                 <p className="mb-6 text-[var(--foreground-muted-dark)]">
-                  Complete your Phase-1 registration for NeoNexus 2025 by filling out the form below and submitting your Abstracts.<br/>
-                  Click below to Fill and Submit the form 👇.
+                  Phase-1 Completed, Selection Process has been started. Results will be announced on 15th,16th of August 2025. Teams will be notified regarding their selection status via email.
+                  Once selected, the registration fee should be paid. Regarding Payment details, please refer to the registration process.
                 </p>
                 <button
-					className="neon-button"
-					onClick={() =>
-						window.open(
-							'https://forms.gle/QzqqC1dw3dwpdYxc7',
-							'_blank'
-						)
-					}
+					className="neon-button cursor-not-allowed opacity-60"
+					onClick={() => {}}
+              disabled
 				>
-					Register here!
+					Registration Closed!
 				</button>
                 <br/>
                 <br/>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="glass-panel p-4 text-center">
                     <h3 className="font-bold mb-2 text-[var(--secondary)]">IMPORTANT DATES</h3>
-                    <p className="text-sm">Abstract Submission Deadline: August 7, 2025</p>
+                    <p className="text-sm">Phase-1 Result: August 15th,16th, 2025</p>
                   </div>
                   <div className="glass-panel p-4 text-center">
                     <h3 className="font-bold mb-2 text-[var(--accent)]">TEAM SIZE</h3>

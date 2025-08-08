@@ -38,6 +38,10 @@ export default function FaqSection() {
       answer: "NeoNexus is open to all college students (undergraduate and postgraduate) from any institution across India. You must have a valid college ID to participate."
     },
     {
+      question: "Can I start working on my project before the hackathon?",
+      answer: "No, all projects must be started from scratch during the hackathon. You can come prepared with ideas, but the actual development must begin only after the Hackathon starts."
+    },
+    {
       question: "How many members can be in a team?",
       answer: "Each team must have a minimum of 3 and a maximum of 4 members. We encourage diversity in team formation."
     },
@@ -52,10 +56,6 @@ export default function FaqSection() {
     {
       question: "Will there be food and refreshments?",
       answer: "Absolutely! We will provide meals and refreshments throughout the 36 hours of the hackathon."
-    },
-    {
-      question: "Can I start working on my project before the hackathon?",
-      answer: "No, all projects must be started from scratch during the hackathon. You can come prepared with ideas, but the actual development must begin only after the problem statements are revealed."
     }
   ];
   

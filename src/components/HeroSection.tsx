@@ -280,7 +280,7 @@ export default function HeroSection() {
                 </svg>
                 <span className="text-[#ff1744] ml-1">Registrations Closed!</span>
               </span>
-              <span className="text-white font-bold w-full sm:w-auto block mt-1">Results will be announced on 15th,16th of August 2025 - Respective Team Leader will be notified via email.</span>
+              <span className="text-white font-bold w-full sm:w-auto block mt-1">Your submitted Abstracts are under review🔎 - Results will be announced on 15th,16th of August 2025 - Respective Team Leaders will be notified via email.</span>
               
             </a>
           </div>
@@ -308,11 +308,13 @@ export default function HeroSection() {
               </svg>
               Register Now
             </button>
-            <button
-              className="neon-button flex items-center justify-center gap-2 font-semibold"
-              onClick={() => window.open('/AbstractTemplate.pdf', '_blank')}
+            {/* To enable, remove 'disabled' and set a valid URL in window.open */}
+            <button //shortlisted teams list
+              className="neon-button flex items-center justify-center gap-2 font-semibold opacity-60 cursor-not-allowed"
+              onClick={() => {}}
+              disabled
             >
-              <span className="w-full text-center">Abstract Template</span>
+              <span className="w-full text-center">Shortlisted Teams</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 shimmer-icon"

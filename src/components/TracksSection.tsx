@@ -44,12 +44,12 @@ const tracks = [
 	},
 ];
 
-const problemStatementPDFs = [
-	'/AdvancedTechnology.pdf',
-	'/Sustainability.pdf',
-	'/CyberSecurity&IoT.pdf',
-	'/Mobility.pdf',
-];
+// const problemStatementPDFs = [
+// 	'/AdvancedTechnology.pdf',
+// 	'/Sustainability.pdf',
+// 	'/CyberSecurity&IoT.pdf',
+// 	'/Mobility.pdf',
+// ];
 
 function HexGrid3D() {
 	const ref = useRef<HTMLDivElement>(null);
@@ -140,17 +140,27 @@ export default function TracksSection() {
 								</div>
 								<br />
 								<div className="flex justify-end">
+	{/*
 	<a
 		href={problemStatementPDFs[index]}
 		download
-				className="inline-flex items-center shiny-border px-3 py-1.5 mt-2 text-sm sm:text-base font-semibold problem-btn bg-transparent"
-				style={{ background: 'transparent' }}
+		className="inline-flex items-center shiny-border px-3 py-1.5 mt-2 text-sm sm:text-base font-semibold problem-btn bg-transparent"
+		style={{ background: 'transparent' }}
 		target="_blank"
 		rel="noopener noreferrer"
 	>
 		Problem Statements
 		<Download className="ml-2 w-4 h-4 neon-text" />
 	</a>
+	*/}
+	<button
+		className="inline-flex items-center shiny-border px-3 py-1.5 mt-2 text-sm sm:text-base font-semibold problem-btn bg-transparent opacity-60 cursor-not-allowed"
+		style={{ background: 'transparent' }}
+		disabled
+	>
+		Problem Statements
+		<Download className="ml-2 w-4 h-4 neon-text" />
+	</button>
 </div>
 							</div>
 						))}
@@ -170,18 +180,20 @@ export default function TracksSection() {
 			  <h4 className="text-xl font-bold mb-2">SUSTAINABLE ENVIRONMENT</h4>
 			  <p className="mb-6 text-[var(--foreground-muted)]">Dive deeper into sustainability with extra unique challenges.</p>
 			  <button
-				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn bg-transparent"
+				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn bg-transparent cursor-not-allowed opacity-60"
 				style={{ background: 'transparent' }}
-				onClick={() => {
-				  const link = document.createElement('a');
-				  link.href = '/BonusSustainable.pdf'; 
-				  link.download = '/BonusSustainable.pdf';
-				  document.body.appendChild(link);
-				  link.click();
-				  document.body.removeChild(link);
-				  // Preview after download
-				  window.open('/BonusSustainable.pdf', '_blank');
-				}}
+				onClick={() => {}}
+			  disabled
+				// onClick={() => {
+				//   const link = document.createElement('a');
+				//   link.href = '/BonusSustainable.pdf'; 
+				//   link.download = '/BonusSustainable.pdf';
+				//   document.body.appendChild(link);
+				//   link.click();
+				//   document.body.removeChild(link);
+				//   // Preview after download
+				//   window.open('/BonusSustainable.pdf', '_blank');
+				// }}
 			  >
 				Problem Statements
 				<Download className="ml-2 w-4 h-4 neon-text" />
@@ -193,17 +205,19 @@ export default function TracksSection() {
 			  <h4 className="text-xl font-bold mb-2">ADVANCED TECHNOLOGY</h4>
 			  <p className="mb-6 text-[var(--foreground-muted)]">Unlock more tech-driven challenges and push the boundaries of innovation.</p>
 			  <button
-				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn"
+				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn cursor-not-allowed opacity-60"
 				style={{ background: 'none' }}
-				onClick={() => {
-				  const link = document.createElement('a');
-				  link.href = '/BonusAdvancedTechnology.pdf'; 
-				  link.download = '/BonusAdvancedTechnology.pdf';
-				  document.body.appendChild(link);
-				  link.click();
-				  document.body.removeChild(link);
-				  window.open('/BonusAdvancedTechnology.pdf', '_blank'); 
-				}}
+				onClick={() => {}}
+			  disabled
+				// onClick={() => {
+				//   const link = document.createElement('a');
+				//   link.href = '/BonusAdvancedTechnology.pdf'; 
+				//   link.download = '/BonusAdvancedTechnology.pdf';
+				//   document.body.appendChild(link);
+				//   link.click();
+				//   document.body.removeChild(link);
+				//   window.open('/BonusAdvancedTechnology.pdf', '_blank'); 
+				// }}
 			  >
 				Problem Statements
 				<Download className="ml-2 w-4 h-4 neon-text" />
@@ -215,17 +229,19 @@ export default function TracksSection() {
 			  <h4 className="text-xl font-bold mb-2">CYBERSECURITY THREATS</h4>
 			  <p className="mb-6 text-[var(--foreground-muted)]">Take on extra cybersecurity problems and defend the digital frontier.</p>
 			  <button
-				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn"
+				className="inline-flex items-center shiny-border px-4 py-2 font-semibold problem-btn cursor-not-allowed opacity-60"
 				style={{ background: 'none' }}
-				onClick={() => {
-				  const link = document.createElement('a');
-				  link.href = '/BonusCyberSecurity.pdf'; 
-				  link.download = '/BonusCyberSecurity.pdf';
-				  document.body.appendChild(link);
-				  link.click();
-				  document.body.removeChild(link);
-				  window.open('/BonusCyberSecurity.pdf', '_blank'); 
-				}}
+				onClick={() => {}}
+			  disabled
+				// onClick={() => {
+				//   const link = document.createElement('a');
+				//   link.href = '/BonusCyberSecurity.pdf'; 
+				//   link.download = '/BonusCyberSecurity.pdf';
+				//   document.body.appendChild(link);
+				//   link.click();
+				//   document.body.removeChild(link);
+				//   window.open('/BonusCyberSecurity.pdf', '_blank'); 
+				// }}
 			  >
 				Problem Statements
 				<Download className="ml-2 w-4 h-4 neon-text" />
@@ -259,7 +275,7 @@ export default function TracksSection() {
 								Submit your team’s idea based on a problem statement in your chosen domain.
 								<br />
 								<br />
-								📅 Deadline: Registrations Closed!
+								Registrations Closed!
 							</p>
 							{expandedPhase === 1 ? (
 								<div className="mt-4 text-[var(--foreground-muted)] flex flex-col flex-grow justify-between h-full">
