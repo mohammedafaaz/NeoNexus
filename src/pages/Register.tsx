@@ -96,7 +96,7 @@ export default function Register() {
                 <br/>
         
                 <p className="mb-6 text-[var(--foreground-muted-dark)]">
-                  Phase-1 Completed, Selection Process has been started. Results will be announced on 15th,16th of August 2025. Teams will be notified regarding their selection status via email.
+                  Phase-1 Completed, Selection Process has been started. Results will be announced on 18th of August 2025. Teams will be notified regarding their selection status via email.
                   Once selected, the registration fee should be paid. Regarding Payment details, please refer to the registration process.
                 </p>
                 <button
@@ -111,7 +111,7 @@ export default function Register() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="glass-panel p-4 text-center">
                     <h3 className="font-bold mb-2 text-[var(--secondary)]">IMPORTANT DATES</h3>
-                    <p className="text-sm">Phase-1 Result: August 15th,16th, 2025</p>
+                    <p className="text-sm">Phase-1 Result: August 18th 2025</p>
                   </div>
                   <div className="glass-panel p-4 text-center">
                     <h3 className="font-bold mb-2 text-[var(--accent)]">TEAM SIZE</h3>

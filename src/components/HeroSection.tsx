@@ -280,7 +280,7 @@ export default function HeroSection() {
                 </svg>
                 <span className="text-[#ff1744] ml-1">Registrations Closed!</span>
               </span>
-              <span className="text-white font-bold w-full sm:w-auto block mt-1">Your submitted Abstracts are under review🔎 - Results will be announced on 15th,16th of August 2025 - Respective Team Leaders will be notified via email.</span>
+              <span className="text-white font-bold w-full sm:w-auto block mt-1">Your submitted Abstracts are under review🔎 - Results will be announced on 18th of August 2025 - Respective Team Leaders will be notified via email.</span>
               
             </a>
           </div>
