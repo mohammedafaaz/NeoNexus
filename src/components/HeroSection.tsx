@@ -3,6 +3,79 @@ import { useState, useEffect, useRef } from 'react';
 import Countdown from 'react-countdown';
 import Orb from './Orb';
 
+// Confetti component
+function Confetti() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const confettiRef = useRef<any[]>([]);
+  const animationRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd', '#98d8c8'];
+    const confettiCount = 150;
+
+    // Initialize confetti
+    confettiRef.current = Array.from({ length: confettiCount }).map(() => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      vx: (Math.random() - 0.5) * 6,
+      vy: Math.random() * 3 + 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: Math.random() * 8 + 4,
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 10,
+    }));
+
+    function animate() {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      confettiRef.current.forEach((particle) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.rotation += particle.rotationSpeed;
+
+        if (particle.y > canvas.height) {
+          particle.y = -10;
+          particle.x = Math.random() * canvas.width;
+        }
+
+        ctx.save();
+        ctx.translate(particle.x, particle.y);
+        ctx.rotate((particle.rotation * Math.PI) / 180);
+        ctx.fillStyle = particle.color;
+        ctx.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size);
+        ctx.restore();
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none z-50"
+      style={{ width: '100vw', height: '100vh' }}
+    />
+  );
+}
+
 const eventDate = new Date('2025-09-06T09:00:00');
 
 // DecryptText component for decrypted text effect
@@ -150,6 +223,56 @@ function CosmicStarfield() {
 
 export default function HeroSection() {
   // const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [teamId, setTeamId] = useState('');
+  const [result, setResult] = useState<any>(null);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Load shortlisted teams data
+  const [shortlistedTeams, setShortlistedTeams] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Load the JSON data
+    fetch('/shortlistedteams.json')
+      .then(response => response.json())
+      .then(data => setShortlistedTeams(data))
+      .catch(error => console.error('Error loading shortlisted teams:', error));
+  }, []);
+
+  const handleViewResult = () => {
+    setShowModal(true);
+    setResult(null);
+    setTeamId('');
+  };
+
+  const handleSubmitTeamId = async () => {
+    if (!teamId.trim()) return;
+
+    setLoading(true);
+    const trimmedId = teamId.trim().toUpperCase();
+    
+    // Search for team in the JSON data
+    const foundTeam = shortlistedTeams.find(team => team.teamId.toUpperCase() === trimmedId);
+    
+    if (foundTeam) {
+      setResult(foundTeam);
+      setShowConfetti(true);
+      // Stop confetti after 3 seconds
+      setTimeout(() => setShowConfetti(false), 3000);
+    } else {
+      setResult({ notFound: true });
+    }
+    
+    setLoading(false);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setResult(null);
+    setTeamId('');
+    setShowConfetti(false);
+  };
 
   const renderer = ({
     days,
@@ -264,24 +387,22 @@ export default function HeroSection() {
           </p>
 
           {/* Abstract Submission Notice as a clickable link */}
-          <style>{`.notice-glow { text-shadow: 0 0 4px #ff1744cc, 0 0 8px #fff2; }`}</style>
+          <style>{`.notice-glow { text-shadow: 0 0 4px #00ff15af, 0 0 8px #fff2; }`}</style>
           <div className="flex justify-center mb-4">
-            <a
-              href="#" //Paste imp link here
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={handleViewResult}
               className="font-bold text-xs md:text-xs tracking-wide animate-pulse px-4 py-2 rounded-md border border-[var(--primary)]/100 bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20 transition-colors duration-200 shadow-sm text-white flex flex-col sm:flex-row items-center gap-1 sm:gap-2 notice-glow text-center"
               style={{ textDecoration: 'none', cursor: 'pointer', borderWidth: '0.5px' }}
             >
               <span className="flex items-center justify-center w-full sm:w-auto mb-1 sm:mb-0">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-[#ff1744]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{minWidth:'1rem'}}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{minWidth:'1rem'}}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 9v6h4l5 5V4l-5 5H9z" />
                 </svg>
-                <span className="text-[#ff1744] ml-1">Registrations Closed!</span>
+                <span className="text-green-400 ml-1">Phase-1 Results Announced!</span>
               </span>
-              <span className="text-white font-bold w-full sm:w-auto block mt-1">Team IDs have been assigned, click on the button below to view - Results will be announced soon! - Respective Team Leaders will be notified via email.</span>
+              <span className="text-white font-bold w-full sm:w-auto block mt-1">click here to view results</span>
 
-            </a>
+            </button>
           </div>
           <h2 className="text-xl md:text-2xl mb-4 font-semibold">
             September 6-7, 2025
@@ -307,11 +428,9 @@ export default function HeroSection() {
               </svg>
               Know Your Team ID
             </button>
-            {/* To enable, remove 'disabled' and set a valid URL in window.open */}
-            <button //shortlisted teams list
-              className="neon-button flex items-center justify-center gap-2 font-semibold opacity-60 cursor-not-allowed"
-              onClick={() => {}}
-              disabled
+            <button
+              className="neon-button flex items-center justify-center gap-2 font-semibold"
+              onClick={() => window.open('/ShortlistedTeams.pdf', '_blank')}
             >
               <span className="w-full text-center">Shortlisted Teams</span>
               <svg
@@ -322,7 +441,7 @@ export default function HeroSection() {
                 stroke="white"
                 strokeWidth={1}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
             </button>
           </div>
@@ -344,6 +463,111 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Modal for Team ID Input and Results */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-40 p-4">
+          <div className="bg-gray-900 rounded-lg p-6 max-w-md w-full mx-4 border border-purple-500/30 shadow-2xl">
+            {!result ? (
+              <>
+                <h3 className="text-xl font-bold text-white mb-4 text-center">Enter Your Team ID</h3>
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    value={teamId}
+                    onChange={(e) => setTeamId(e.target.value)}
+                    placeholder="Enter Team ID"
+                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20"
+                    onKeyPress={(e) => e.key === 'Enter' && handleSubmitTeamId()}
+                  />
+                  <div className="mt-2 text-center">
+                    <button
+                      onClick={() => window.open('/TeamIDs.pdf', '_blank')}
+                      className="text-purple-400 hover:text-purple-300 text-sm underline transition-colors duration-200"
+                    >
+                      Don't know your Team ID? Click here
+                    </button>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <button
+                    onClick={handleSubmitTeamId}
+                    disabled={loading || !teamId.trim()}
+                    className="flex-1 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200"
+                  >
+                    {loading ? 'Checking...' : 'Submit'}
+                  </button>
+                  <button
+                    onClick={handleCloseModal}
+                    className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : result.notFound ? (
+              <>
+                <div className="text-left">
+                  <h3 className="text-xl font-bold text-red-500 mb-4 text-center">Not Shortlisted</h3>
+                  <div className="text-gray-300 mb-6 leading-relaxed">
+                    <p className="mb-2">Unfortunately, your Abstract has not been shortlisted for NeoNexus hackathon.</p>
+                    <p className="mb-2">The competition was really tough among many teams!</p>
+                    <p className="mb-2">Don't lose hope great comebacks are built from setbacks. 💪</p>
+                    <p>We wish you the best of luck in your future endeavors! ✨</p>
+                  </div>
+                  <button
+                    onClick={handleCloseModal}
+                    className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                  >
+                    Close
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="text-left">
+                  <div className="text-6xl mb-4 text-center">🎉</div>
+                  <h3 className="text-xl font-bold text-green-400 mb-4">
+                    <center>Congratulations!</center><br/>You've been shortlisted for the:<br />"NeoNexus {result.category === 'Hackathon' ? 'Hackathon' : 'Poster Presentation'}"!
+                  </h3>
+                  <div className="bg-gray-800 rounded-lg p-4 mb-4 border border-purple-500/30">
+                    <div className="text-left space-y-2">
+                      <div>
+                        <span className="text-purple-400 font-semibold">Team Name:</span>
+                        <span className="text-white ml-2">{result.teamName}</span>
+                      </div>
+                      <div>
+                        <span className="text-purple-400 font-semibold">Team Leader:</span>
+                        <span className="text-white ml-2">{result.teamLeader}</span>
+                      </div>
+                      <div>
+                        <span className="text-purple-400 font-semibold">Team ID:</span>
+                        <span className="text-white ml-2">{result.teamId}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-gray-300 mb-6 leading-relaxed text-left">
+                    {result.category === 'Hackathon' ? (
+                      <p>Out of heavy competition, your team has been selected for the offline NeoNexus Hackathon.<br />Wishing you the best of luck in the event!🚀<br /><br />Further details regarding payment of registration fee will be updated via email.</p>
+                    ) : (
+                      <p>Your innovative idea/Abstract has been selected for offline NeoNexus Poster Presentation.<br /> We can't wait to see your creativity shine!<br /><br />Further details regarding payment of registration fee will be updated via email.</p>
+                    )}
+                  </div>
+                  <button
+                    onClick={handleCloseModal}
+                    className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                  >
+                    Close
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Confetti Animation */}
+      {showConfetti && <Confetti />}
     </section>
   );
 }
