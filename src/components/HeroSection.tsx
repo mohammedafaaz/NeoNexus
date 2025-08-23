@@ -1,6 +1,5 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import Orb from './Orb';
 
@@ -150,7 +149,7 @@ function CosmicStarfield() {
 }
 
 export default function HeroSection() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const renderer = ({
     days,
@@ -280,8 +279,8 @@ export default function HeroSection() {
                 </svg>
                 <span className="text-[#ff1744] ml-1">Registrations Closed!</span>
               </span>
-              <span className="text-white font-bold w-full sm:w-auto block mt-1">Results will be announced soon! - Respective Team Leaders will be notified via email.</span>
-              
+              <span className="text-white font-bold w-full sm:w-auto block mt-1">Team IDs have been assigned, click on the button below to view - Results will be announced soon! - Respective Team Leaders will be notified via email.</span>
+
             </a>
           </div>
           <h2 className="text-xl md:text-2xl mb-4 font-semibold">
@@ -294,19 +293,19 @@ export default function HeroSection() {
             <button
               type="button"
               className="neon-button flex items-center justify-center gap-2"
-              onClick={() => navigate('/Register')}
+              onClick={() => window.open('/TeamIDs.pdf', '_blank')}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 shimmer-icon"
+                className="h-4 w-4 shimmer-icon"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="white"
                 strokeWidth={1}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              Register Now
+              Know Your Team ID
             </button>
             {/* To enable, remove 'disabled' and set a valid URL in window.open */}
             <button //shortlisted teams list
