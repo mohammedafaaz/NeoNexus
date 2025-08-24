@@ -5,6 +5,7 @@ import PaymentForm from '../components/PaymentForm';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+
 export default function Register() {
   const [registrationOpen] = useState(true); // Set to true to enable registration
   const [showProcess, setShowProcess] = useState(false);

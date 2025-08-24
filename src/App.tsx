@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Analytics } from "@vercel/analytics/react"
 import './index.css';
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
@@ -62,6 +63,8 @@ export function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
+        {/* Vercel Analytics */}
+        <Analytics />
       </PDFProvider>
     </QueryClientProvider>
   );
