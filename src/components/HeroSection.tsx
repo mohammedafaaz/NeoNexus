@@ -483,7 +483,7 @@ export default function HeroSection() {
                   <div className="mt-2 text-center">
                     <button
                       onClick={() => window.open('/TeamIDs.pdf', '_blank')}
-                      className="text-purple-400 hover:text-purple-300 text-sm underline transition-colors duration-200"
+                      className="text-purple-400 hover:text-purple-300 text-xs underline transition-colors duration-200"
                     >
                       Don't know your Team ID? Click here
                     </button>
@@ -526,7 +526,7 @@ export default function HeroSection() {
             ) : (
               <>
                 <div className="text-left">
-                  <div className="text-6xl mb-4 text-center">🎉</div>
+                  <div className="text-5xl mb-3 text-center">🎉</div>
                   <h3 className="text-xl font-bold text-green-400 mb-4">
                     <center>Congratulations!</center><br/>You've been shortlisted for the:<br />"NeoNexus {result.category === 'Hackathon' ? 'Hackathon' : 'Poster Presentation'}"!
                   </h3>
