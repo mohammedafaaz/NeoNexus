@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Countdown from 'react-countdown';
 import Orb from './Orb';
@@ -464,20 +463,20 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Modal for Team ID Input and Results */}
+      {/* Modal for Team ID Input and Results - Fixed z-index and improved mobile responsiveness */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-40 p-4">
-          <div className="bg-gray-900 rounded-lg p-6 max-w-md w-full mx-4 border border-purple-500/30 shadow-2xl">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[9999] p-2 sm:p-4">
+          <div className="bg-gray-900 rounded-lg p-4 sm:p-6 max-w-md w-full mx-2 sm:mx-4 border border-purple-500/30 shadow-2xl max-h-[90vh] overflow-y-auto">
             {!result ? (
               <>
-                <h3 className="text-xl font-bold text-white mb-4 text-center">Enter Your Team ID</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 text-center">Enter Your Team ID</h3>
                 <div className="mb-4">
                   <input
                     type="text"
                     value={teamId}
                     onChange={(e) => setTeamId(e.target.value)}
                     placeholder="Enter Team ID"
-                    className="w-full px-4 py-3 bg-gray-800 border border-purple-500/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-purple-500/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-sm sm:text-base"
                     onKeyPress={(e) => e.key === 'Enter' && handleSubmitTeamId()}
                   />
                   <div className="mt-2 text-center">
@@ -489,17 +488,17 @@ export default function HeroSection() {
                     </button>
                   </div>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={handleSubmitTeamId}
                     disabled={loading || !teamId.trim()}
-                    className="flex-1 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200"
+                    className="flex-1 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-2 sm:py-3 px-4 rounded-lg transition-colors duration-200 text-sm sm:text-base min-h-[44px] touch-manipulation"
                   >
                     {loading ? 'Checking...' : 'Submit'}
                   </button>
                   <button
                     onClick={handleCloseModal}
-                    className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200"
+                    className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 sm:py-3 px-4 rounded-lg transition-colors duration-200 text-sm sm:text-base min-h-[44px] touch-manipulation"
                   >
                     Cancel
                   </button>
@@ -508,57 +507,61 @@ export default function HeroSection() {
             ) : result.notFound ? (
               <>
                 <div className="text-left">
-                  <h3 className="text-xl font-bold text-red-500 mb-4 text-center">Not Shortlisted</h3>
-                  <div className="text-gray-300 mb-6 leading-relaxed">
+                  <h3 className="text-lg sm:text-xl font-bold text-red-500 mb-4 text-center">Not Shortlisted</h3>
+                  <div className="text-gray-300 mb-6 leading-relaxed text-sm sm:text-base">
                     <p className="mb-2">Unfortunately, your Abstract has not been shortlisted for NeoNexus hackathon.</p>
                     <p className="mb-2">The competition was really tough among many teams!</p>
                     <p className="mb-2">Don't lose hope great comebacks are built from setbacks. 💪</p>
                     <p>We wish you the best of luck in your future endeavors! ✨</p>
                   </div>
-                  <button
-                    onClick={handleCloseModal}
-                    className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
-                  >
-                    Close
-                  </button>
+                  <div className="text-center">
+                    <button
+                      onClick={handleCloseModal}
+                      className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 sm:py-3 px-6 rounded-lg transition-colors duration-200 text-sm sm:text-base min-h-[44px] touch-manipulation"
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               </>
             ) : (
               <>
                 <div className="text-left">
-                  <div className="text-5xl mb-3 text-center">🎉</div>
-                  <h3 className="text-xl font-bold text-green-400 mb-4">
-                    <center>Congratulations!</center><br/>You've been shortlisted for the:<br />"NeoNexus {result.category === 'Hackathon' ? 'Hackathon' : 'Poster Presentation'}"!
+                  <div className="text-4xl sm:text-5xl mb-3 text-center">🎉</div>
+                  <h3 className="text-lg sm:text-xl font-bold text-green-400 mb-4 text-center leading-relaxed">
+                    Congratulations!<br/>You've been shortlisted for the:<br />"NeoNexus {result.category === 'Hackathon' ? 'Hackathon' : 'Poster Presentation'}"!
                   </h3>
-                  <div className="bg-gray-800 rounded-lg p-4 mb-4 border border-purple-500/30">
-                    <div className="text-left space-y-2">
-                      <div>
-                        <span className="text-purple-400 font-semibold">Team Name:</span>
-                        <span className="text-white ml-2">{result.teamName}</span>
+                  <div className="bg-gray-800 rounded-lg p-3 sm:p-4 mb-4 border border-purple-500/30">
+                    <div className="text-left space-y-2 text-sm sm:text-base">
+                      <div className="flex flex-col sm:flex-row sm:items-center">
+                        <span className="text-purple-400 font-semibold min-w-[100px]">Team Name:</span>
+                        <span className="text-white sm:ml-2 break-words">{result.teamName}</span>
                       </div>
-                      <div>
-                        <span className="text-purple-400 font-semibold">Team Leader:</span>
-                        <span className="text-white ml-2">{result.teamLeader}</span>
+                      <div className="flex flex-col sm:flex-row sm:items-center">
+                        <span className="text-purple-400 font-semibold min-w-[100px]">Team Leader:</span>
+                        <span className="text-white sm:ml-2 break-words">{result.teamLeader}</span>
                       </div>
-                      <div>
-                        <span className="text-purple-400 font-semibold">Team ID:</span>
-                        <span className="text-white ml-2">{result.teamId}</span>
+                      <div className="flex flex-col sm:flex-row sm:items-center">
+                        <span className="text-purple-400 font-semibold min-w-[100px]">Team ID:</span>
+                        <span className="text-white sm:ml-2 break-words">{result.teamId}</span>
                       </div>
                     </div>
                   </div>
-                  <div className="text-gray-300 mb-6 leading-relaxed text-left">
+                  <div className="text-gray-300 mb-6 leading-relaxed text-left text-sm sm:text-base">
                     {result.category === 'Hackathon' ? (
                       <p>Out of heavy competition, your team has been selected for the offline NeoNexus Hackathon.<br />Wishing you the best of luck in the event!🚀<br /><br />Further details regarding payment of registration fee will be updated via email.</p>
                     ) : (
                       <p>Your innovative idea/Abstract has been selected for offline NeoNexus Poster Presentation.<br /> We can't wait to see your creativity shine!<br /><br />Further details regarding payment of registration fee will be updated via email.</p>
                     )}
                   </div>
-                  <button
-                    onClick={handleCloseModal}
-                    className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
-                  >
-                    Close
-                  </button>
+                  <div className="text-center">
+                    <button
+                      onClick={handleCloseModal}
+                      className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 sm:py-3 px-6 rounded-lg transition-colors duration-200 text-sm sm:text-base min-h-[44px] touch-manipulation"
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               </>
             )}
