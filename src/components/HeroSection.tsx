@@ -397,9 +397,11 @@ export default function HeroSection() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{minWidth:'1rem'}}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 9v6h4l5 5V4l-5 5H9z" />
                 </svg>
-                <span className="text-green-400 ml-1">Phase-1 Results Announced! - Phase-2 Registrations links available now!, and has been sent via email.</span>
+                <span className="text-green-400 ml-1">Phase-1 Results Announced!</span>
               </span>
               <span className="text-white font-bold w-full sm:w-auto block mt-1">click here to view results</span>
+              <span className="text-green-400 ml-1">Phase-2 Registrations links available now!, and has been sent via email.</span> 
+              <span className="text-white ml-1">Deadline 28-08-2025</span>
 
             </button>
           </div>
