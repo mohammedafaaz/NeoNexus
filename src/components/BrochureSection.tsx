@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { AlertTriangle, FileDown, Share2, Upload } from 'lucide-react';
+import { AlertTriangle, FileDown, Share2} from 'lucide-react';
 import { usePDF } from '../context/PDFContext';
-import PDFUploadModal from './PDFUploadModal';
+
 
 function AnimatedPDFIcon() {
 	const ref = useRef<HTMLDivElement>(null);
@@ -28,7 +28,6 @@ function AnimatedPDFIcon() {
 }
 
 export default function BrochureSection() {
-  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [showAdminControls, setShowAdminControls] = useState(false);
   const [shareMessage, setShareMessage] = useState<string | null>(null);
   const [downloading, setDownloading] = useState(false); // <-- add state
@@ -132,15 +131,6 @@ export default function BrochureSection() {
                   Share Brochure
                 </button>
                 
-                {isAdmin && (
-                  <button 
-                    className="neon-button flex items-center bg-[var(--accent)]/20 border-[var(--accent)]"
-                    onClick={() => setIsUploadModalOpen(true)}
-                  >
-                    <Upload className="w-5 h-5 mr-2" />
-                    Upload Brochure
-                  </button>
-                )}
               </div>
               
               {downloading && (
@@ -183,12 +173,6 @@ export default function BrochureSection() {
           </div>
         </div>
       </div>
-      
-      {/* PDF Upload Modal */}
-      <PDFUploadModal 
-        isOpen={isUploadModalOpen}
-        onClose={() => setIsUploadModalOpen(false)}
-      />
     </section>
   );
 }
