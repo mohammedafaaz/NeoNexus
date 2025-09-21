@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useAnimation, useTransform, PanInfo, ResolvedValues } from 'motion/react';
 
 const IMGS: string[] = [
-  'public/20250907_022633.jpg',
-  'public/20250907_163909.jpg',
-  'public/WhatsApp Image 2025-09-21 at 13.42.06_0a0aa89a.jpg',
-  'public/20250907_163454.jpg',
-  'public/WhatsApp Image 2025-09-21 at 13.42.06_51e195c7.jpg',
-  'public/WhatsApp Image 2025-09-21 at 13.42.09_28e6fdfd.jpg',
-  'public/DSC_1410.JPG',
-  'public/WhatsApp Image 2025-09-21 at 13.42.06_51e195c7.jpg',
-  'public/WhatsApp Image 2025-09-21 at 13.42.07_0c2ac010.jpg'
+  'public/nn1.jpg',
+  'public/nn2.jpg',
+  'public/nn3.jpg',
+  'public/nn7.jpg',
+  'public/nn4.jpg',
+  'public/nn8.jpg',
+  'public/nn9.JPG',
+  'public/nn11.jpg'
   ];
 
 interface RollingGalleryProps {
