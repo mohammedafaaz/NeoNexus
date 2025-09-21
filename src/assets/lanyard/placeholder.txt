@@ -1,0 +1,7 @@
+This is a placeholder file to ensure the directory structure exists.
+
+Please add the following files to this directory:
+1. card.glb - 3D model file for the ID card
+2. lanyard.png - Texture image for the lanyard band
+
+You can download these files from the original repository or create your own.

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Countdown from 'react-countdown';
 import Orb from './Orb';
+import RollingGallery from './RollingGallery';
+import Lanyard from './Lanyard';
 
 // Confetti component
 function Confetti() {
@@ -287,7 +289,7 @@ export default function HeroSection() {
     completed: boolean;
   }) => {
     if (completed) {
-      return <span className="text-[var(--accent)]">Event has started!</span>;
+      return <span className="text-[var(--accent)]">Event Ended!, Next NEONEXUS 36.1 coming soon.</span>;
     } else {
       return (
         <div className="grid grid-cols-4 gap-6 max-w-lg mx-auto">
@@ -313,6 +315,12 @@ export default function HeroSection() {
     <section className="py-16 flex flex-col justify-center items-center relative overflow-hidden">
       {/* CosmicStarfield as background */}
       <CosmicStarfield />
+      
+      {/* Lanyard component positioned in top right - Desktop only */}
+      <div className="hidden lg:block">
+        <Lanyard position={[2, 0, 15]} gravity={[0, -30, 0]} />
+      </div>
+      
       {/* Neon text animation styles */}
       <style>
         {`
@@ -400,8 +408,6 @@ export default function HeroSection() {
                 <span className="text-green-400 ml-1">Phase-1 Results Announced!</span>
               </span>
               <span className="text-white font-bold w-full sm:w-auto block mt-1">click here to view results</span>
-              <span className="text-green-400 ml-1">Phase-2 Registrations links available now!, and has been sent via email.</span> 
-              <span className="text-white ml-1">Deadline 28-08-2025</span>
 
             </button>
           </div>
@@ -411,6 +417,12 @@ export default function HeroSection() {
           <div className="mb-8">
             <Countdown date={eventDate} renderer={renderer} />
           </div>
+          
+          {/* Rolling Gallery Component - Desktop only */}
+          <div className="mb-8 hidden lg:block">
+            <RollingGallery autoplay={true} pauseOnHover={true} />
+          </div>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               type="button"
