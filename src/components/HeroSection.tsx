@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Countdown from 'react-countdown';
 import Orb from './Orb';
-import RollingGallery from './RollingGallery';
+
 import Lanyard from './Lanyard';
 
 // Confetti component
@@ -418,10 +418,7 @@ export default function HeroSection() {
             <Countdown date={eventDate} renderer={renderer} />
           </div>
           
-          {/* Rolling Gallery Component - Desktop only */}
-          <div className="mb-8 hidden lg:block">
-            <RollingGallery autoplay={true} pauseOnHover={true} />
-          </div>
+
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
